@@ -32,9 +32,9 @@
 이예지, 박병근, 황효석, 유성민
 
 ## Contact
-박병근 
-유성민 
-이예지 
-황효석 hhseok960@gmail.com
+박병근  
+유성민  
+이예지  
+황효석 hhseok960@gmail.com  
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
