@@ -28,7 +28,7 @@
 이예지, 박병근, 황효석, 유성민
 
 ## Contact
-박병근  
+박병근  zordiac00@gmail.com
 유성민  
 이예지  
 황효석 hhseok960@gmail.com  
