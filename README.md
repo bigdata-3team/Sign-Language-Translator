@@ -32,11 +32,11 @@
 만든 후 보여지는 모습 시연:
 
 <p align="center">
-  <img width="700" align="center" src="https://im5.ezgif.com/tmp/ezgif-5-85925e46d284.gif" alt="demo"/>
+  <img width="700" align="center" src="https://s7.ezgif.com/save/ezgif-7-084891e665ea.gif" alt="demo"/>
 </p>
 
 <p align="center">
-  <img width="700" align="center" src="https://im5.ezgif.com/tmp/ezgif-5-b3f558f8a65a.gif" alt="demo"/>
+  <img width="700" align="center" src="https://s7.ezgif.com/save/ezgif-7-34308dcca66f.gif" alt="demo"/>
 </p>
 
 ### Contributors
