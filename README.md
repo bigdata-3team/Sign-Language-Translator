@@ -43,7 +43,7 @@
 ## Contact
 박병근 zordiac00@gmail.com
 
-유성민  
+유성민 chelirt13@naver.com
 
 이예지 yeji080808@gmail.com
 
