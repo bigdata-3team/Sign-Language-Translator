@@ -14,7 +14,7 @@ dataset_annotation["folder_name"] = dataset_annotation["파일명"].str[:-4]
 input_data = []
 output_data = []
 # for i in range(len(folder_list)):
-for i in range(10):
+for i in range(3):
     image_path = target_folder + "//{0}".format(folder_list[i])
     image_list = os.listdir(image_path)
     print(image_list)
@@ -25,11 +25,12 @@ for i in range(10):
     for j in range(len(image_list)):
         image = Image.open(image_path + "//{0}".format(image_list[j]))
         image = np.asarray(image)
-        img_seq.append(image.tolist())
+        image = image.reshape(-1, *image.shape)
+        img_seq.append(image)
+    img_seq = np.concatenate(img_seq)
+    img_seq = img_seq.reshape(-1, *img_seq.shape)
     input_data.append(img_seq)
     label = dataset_annotation[dataset_annotation["folder_name"] == folder_list[i]].loc[:, "한국어"].values[0]
     if type(label) == int:
         label = str(label)
     output_data.append(label)
-
-
