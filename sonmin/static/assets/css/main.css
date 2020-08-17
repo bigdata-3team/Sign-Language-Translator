@@ -2767,17 +2767,17 @@
 				color: #fff !important;
 			}
 
-	.tab {
-		display: none;
-	}
+	/*.tab {*/
+	/*	display: none;*/
+	/*}*/
 
-		.tab.active {
-			display: -ms-flexbox;
-			display: -moz-flex;
-			display: -webkit-flex;
-			display: -ms-flex;
-			display: flex;
-		}
+	/*	.tab.active {*/
+	/*		display: -ms-flexbox;*/
+	/*		display: -moz-flex;*/
+	/*		display: -webkit-flex;*/
+	/*		display: -ms-flex;*/
+	/*		display: flex;*/
+	/*	}*/
 
 /* Table */
 
@@ -2869,7 +2869,7 @@
 /* Wrapper */
 
 	.wrapper {
-		padding: 6em 0 4em 0;
+		padding: 3em 0 1em 0;
 		position: relative;
 	}
 
@@ -2879,6 +2879,44 @@
 			position: relative;
 			z-index: 99;
 		}
+
+			.wrapper .inner .tab {
+			  overflow: hidden;
+			  background-color: #f1f1f1;
+			  border: 1px solid #ccc;
+			  border-bottom: none;
+			}
+
+			/* Style the buttons inside the tab */
+			.wrapper .inner .tab button {
+			  background-color: inherit;
+			  float: left;
+			  border: none;
+			  outline: none;
+			  cursor: pointer;
+			  padding: 0px;
+			  width: 50%;
+			  transition: 0.3s;
+			  font-size: 17px;
+			}
+
+			/* Change background color of buttons on hover */
+			.wrapper .inner .tab button:hover {
+			  background-color: #ddd;
+			}
+
+			/* Create an active/current tablink class */
+			.wrapper .inner .tab button.active {
+			  background-color: #FFFFFF;
+			}
+
+			/* Style the tab content */
+			.wrapper .inner .tabcontent {
+			  display: none;
+			  padding: 6px 12px;
+			  border: 1px solid #ccc;
+			  border-top: none;
+			}
 
 		.wrapper header {
 			margin-bottom: 4em;

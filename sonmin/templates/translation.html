@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+        <title>손민정음</title>
+		{{ dropzone.load_css() }}
+		{{ dropzone.style('border: 2px dashed #0087F7; margin: 2%; min-height: 400px; max-width: 46%;') }}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../static/assets/css/main.css" />
+    </head>
+	<body class="subpage">
+
+		{% include 'nav.html' %}
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Section -->
+					<section class="wrapper">
+						<div class="inner">
+							<header class="align-center">
+								<h1>수어 번역</h1>
+							</header>
+                            <div class="tab">
+                                  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">수어&nbsp;>&nbsp;한국어</button>
+                                  <button class="tablinks" onclick="openCity(event, 'Paris')">한국어&nbsp;>&nbsp;수어</button>
+                            </div>
+
+                            <div id="London" class="tabcontent">
+								  	{{ dropzone.create(action='translation') }}
+									{{ dropzone.load_js() }}
+									{{ dropzone.config() }}
+                            </div>
+
+                            <div id="Paris" class="tabcontent">
+                                  <h3>Paris</h3>
+                                  <p>Paris is the capital of France.</p>
+                            </div>
+                        </div>
+					</section>
+            </div>
+
+
+		<!-- Scripts -->
+			<script src="static/assets/js/jquery.min.js"></script>
+			<script src="static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="static/assets/js/jquery.scrollex.min.js"></script>
+			<script src="static/assets/js/skel.min.js"></script>
+			<script src="static/assets/js/util.js"></script>
+			<script src="static/assets/js/main.js"></script>
+
+
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+      document.getElementById("defaultOpen").click();
+    </script>
+	</body>
+</html>

@@ -13,20 +13,7 @@
 	</head>
 	<body>
 
-		<!-- Header -->
-			<header id="header" class="alt">
-				<div class="logo"><a href="/"><img src="static/images/son.png"/></a></div>
-				<a href="#menu">Menu</a>
-			</header>
-
-		<!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="generic.html">Generic</a></li>
-					<li><a href="elements.html">Elements</a></li>
-				</ul>
-			</nav>
+		{% include 'nav.html' %}
 
 		<!-- Banner -->
 			<section id="banner">
@@ -35,9 +22,9 @@
 						<h1>손 민 정 음</h1>
 						<p>우리는 수어로 더 쉽게 소통하는 세상을 꿈꿉니다.</p>
 					</header>
-					<a href="#main" class="button big scrolly">번역</a>
+					<a href="/translation" class="button big scrolly">번역</a>
                     &nbsp; &nbsp;
-                    <a href="#main" class="button big scrolly">사전</a>
+                    <a href="/dictionary" class="button big scrolly">사전</a>
 				</div>
 			</section>
 
