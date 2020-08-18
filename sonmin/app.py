@@ -1,42 +1,58 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, Response
+from flask_dropzone import Dropzone
+import os
+
+# 업로드 파일 저장 경로 설정
+basedir = os.path.abspath(os.path.dirname(__file__))
+upload_dir = os.path.join(basedir, 'uploads')
 
 app = Flask(__name__)
+app.config['UPLOADED_PATH'] = upload_dir
 
+dropzone = Dropzone(app)
 
+# 파일 업로드 공간 작동
+app.config.update(
+    UPLOADED_PATH=upload_dir,
+    # 저장 위치
+    # Flask-Dropzone config:
+    DROPZONE_ALLOWED_FILE_TYPE='video',
+    DROPZONE_MAX_FILE_SIZE=3,
+    DROPZONE_MAX_FILES=10,
+)
+
+# 메인
 @app.route('/')
-def hello_world():
+def main():
     return render_template('index.html')
 
+# 번역
+@app.route('/translation', methods=['POST', 'GET'])
+def translation():
+    if request.method == 'POST':
+        print(request.files.get('file'))
 
-@app.route('/index.html')
-def hello_world1():
-    return render_template('index.html')
+        f = request.files.get('file')
+        f.save(os.path.join(upload_dir, f.filename))
+        print(f.filename)
 
+    return render_template('translation.html')
 
-@app.route('/generic.html')
-def hello_world2():
-    return render_template('generic.html')
+# 사전
+@app.route('/dictionary')
+def dictionary():
+    return render_template('dictionary.html')
 
+# 센터 정보
+@app.route('/center_info')
+def center_info():
+    return render_template('center_info.html')
 
-@app.route('/elements.html')
-def hello_world3():
-    return render_template('elements.html')
+# 소개글
+@app.route('/intro')
+def introduce():
+    return render_template('introduce.html')
 
-
-@app.route('/papago.html')
-def hello_world4():
-    return render_template('papago.html')
-
-
-@app.route('/gallery.html')
-def hello_world5():
-    return render_template('gallery.html')
-
-
-@app.route('/webcam.html')
-def hello_world6():
-    return render_template('webcam.html')
-
-
+# 앱 구동
 if __name__ == '__main__':
     app.run()
