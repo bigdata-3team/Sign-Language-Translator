@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, Response
-from flask_dropzone import Dropzone
 import os
+
+from flask import Flask, render_template, request
+from flask_dropzone import Dropzone
 
 # 업로드 파일 저장 경로 설정
 basedir = os.path.abspath(os.path.dirname(__file__))
