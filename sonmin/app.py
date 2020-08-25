@@ -27,12 +27,10 @@ app.config.update(
     DROPZONE_MAX_FILES=10,
 )
 
-
 # 메인
 @app.route('/')
 def main():
     return render_template('index.html')
-
 
 # 번역
 @app.route('/translation', methods=['POST', 'GET'])
@@ -46,79 +44,20 @@ def translation():
 
     return render_template('translation.html')
 
-
 # 사전
 @app.route('/dictionary')
 def dictionary():
     return render_template('dictionary.html')
-
 
 # 센터 정보
 @app.route('/center_info')
 def center_info():
     return render_template('center_info.html')
 
-
 # 소개글
 @app.route('/intro')
 def introduce():
     return render_template('introduce.html')
-
-
-# 테스트(성민)
-@app.route('/test')
-def test():
-    return render_template('test.html')
-
-
-# db 테스트
-conn = sqlite3.connect('C:/Users/SeongMin/naver_map.db')
-c = conn.cursor()
-
-sql = """
-SELECT *
-FROM naver_map
-"""
-
-
-table = pd.read_sql(sql, conn)
-data = table[['Latitude','Longitude']]
-data["Latitude"] = pd.to_numeric((data["Latitude"]))
-data["Longitude"] = pd.to_numeric((data["Longitude"]))
-
-conn.close()
-
-
-# 맵
-@app.route('/map')
-def test2():
-    global data
-
-    for i in range(data.shape[0]):
-        point = list(data.iloc[i, :])
-        m = folium.Map(point, zoom_start=10, min_zoom=7)
-        # folium.Marker(m, popup='maptest6', tooltip='test6').add_to(m)
-    pop_up_list = list(range(data.shape[0]))
-    pop_up_list = list(map(str, pop_up_list))
-    plugins.MarkerCluster(data, popups=pop_up_list).add_to(m)
-    return m._repr_html_()
-
-
-# 맵 테스트
-@app.route('/test2')
-def test3():
-    return render_template('test2.html')
-
-
-
-
-# device_installtions = pd.read_sql(device_installtions_query, mariadb_connection)
-#
-# # Live DataBase에서는 없애도 될 문장
-# device_installtions = device_installtions[pd.notnull(device_installtions["carId"])]
-#
-# device_installtions["carId"] = device_installtions["carId"].astype(int)
-# device_installtions
 
 # 앱 구동
 if __name__ == '__main__':
