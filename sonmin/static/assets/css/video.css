@@ -2,10 +2,9 @@
 
 			/* Smartphones (portrait) ---------------- */
 			@media only screen and (max-width: 320px) {
-				/* Add Your CSS Styling Here */
 				video{
-                    width:320px;
-                }
+                    			width:320px;
+               			}
 				img{
 					width:320px;
 				}
@@ -13,10 +12,9 @@
 
 			/* Smartphones (landscape) ---------------- */
 			@media only screen and (min-width: 321px) and (max-width: 767px) {
-				/* Add Your CSS Styling Here */
 				video{
-                    width:320px;
-                }
+					width:320px;
+				}
 				img{
 					width:320px;
 				}
@@ -24,32 +22,29 @@
 
 			/* Tablets (portrait) -------------------- */
 			@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-				/* Add Your CSS Styling Here */
-                video{
-                    width:770px;
-                }
+               			video{
+					width:770px;
+				}
 				img{
-                    width:770px;
-                }
+					width:770px;
+				}
 			}
 
 			/* Tablets (landscape) ------------------- */
 			@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
 				/* Add Your CSS Styling Here */
-                video{
-                    width:770px;
-                }
+				video{
+				    	width:770px;
+				}
 				img{
-                    width:770px;
-                }
+                  			width:770px;
+                		}
 			}
 
-			/* Old Desktops and laptops ------------------ */
+ 			/* Old Desktops and laptops ------------------ */
 			@media only screen and (min-width: 1025px) {
-				/* Add Your CSS Styling Here */
 			}
 
 			/* Desktops ------------------ */
 			@media only screen and (min-width: 1201px) {
-				/* Add Your CSS Styling Here */
 			}
