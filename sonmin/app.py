@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request, Response
 from flask_dropzone import Dropzone
+import folium
+from folium import plugins
 import os
+from sqlalchemy import create_engine
+import sqlite3
+import pandas as pd
+
 
 # 업로드 파일 저장 경로 설정
 basedir = os.path.abspath(os.path.dirname(__file__))
