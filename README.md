@@ -29,16 +29,7 @@
 ## Sign-Language-Translator 기능
 - **수어**를 보고 **텍스트 및 음성**을 출력
 
-## Getting Started
-필요한 패키지
 
-```
-일반적인 코드 
-
-  pip install example packages
-
-일반적인 코드
- ``` 
  
 ## Contact
 박병근 zordiac00@gmail.com
@@ -48,5 +39,3 @@
 이예지 yeji080808@gmail.com
 
 황효석 hhseok960@gmail.com  
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
