@@ -2,18 +2,24 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <data-source source="LOCAL" name="sonmin" uuid="173b9121-0375-4013-ae4f-bfbd8c983826">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\Admin\Sign-Language-Translator\sonmin\sonmin.sqlite</jdbc-url>
 =======
+=======
+>>>>>>> 07d7c1f9f4000b7ac68be4ab2aa9f2b57ee0cc50
     <data-source source="LOCAL" name="sonmin" uuid="fd7c324b-ed9d-4f0a-b059-c4eb8a9cf254">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/sonmin.db</jdbc-url>
+<<<<<<< HEAD
 >>>>>>> f9933833e785b63b070cd78cf23b550794fd6e1d
+=======
+>>>>>>> 07d7c1f9f4000b7ac68be4ab2aa9f2b57ee0cc50
       <libraries>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.31.1/sqlite-jdbc-3.31.1.jar</url>

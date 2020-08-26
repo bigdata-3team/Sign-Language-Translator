@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, Response
 from flask_sqlalchemy import SQLAlchemy, Pagination
 from flask_admin import Admin
 from flask_dropzone import Dropzone
+<<<<<<< HEAD
 from flask_paginate import Pagination, get_page_args
 from folium.plugins import MarkerCluster
 from folium import plugins
@@ -9,7 +10,9 @@ from sqlalchemy import create_engine
 
 import random
 import folium
+from folium import plugins
 import os
+from sqlalchemy import create_engine
 import sqlite3
 import pandas as pd
 
