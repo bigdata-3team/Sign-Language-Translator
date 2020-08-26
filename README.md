@@ -3,7 +3,7 @@
 
 :man: &nbsp;&nbsp;박병근, 유성민, 이예지, 황효석
 
-:calendar: &nbsp;&nbsp;20.08.06 ~
+:calendar: &nbsp;&nbsp;20.08.06 ~ 20.08.31
 
 :memo: &nbsp;&nbsp;수어 영상을 입력하면 그것이 의미하는 문장을 출력해주는 번역 시스템입니다. 
 대부분의 일반인들은 수어를 알지 못합니다. 수어 번역기는, 일반인이 수어를 배우기 위한 시간과 비용을 들일 필요없이 손쉽게 농인들과 소통할 수 있는 장을 마련합니다.
@@ -29,16 +29,7 @@
 ## Sign-Language-Translator 기능
 - **수어**를 보고 **텍스트 및 음성**을 출력
 
-## Getting Started
-필요한 패키지
 
-```
-일반적인 코드 
-
-  pip install example packages
-
-일반적인 코드
- ``` 
  
 ## Contact
 박병근 zordiac00@gmail.com
@@ -48,5 +39,3 @@
 이예지 yeji080808@gmail.com
 
 황효석 hhseok960@gmail.com  
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)

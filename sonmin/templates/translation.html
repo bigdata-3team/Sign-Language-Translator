@@ -1,14 +1,11 @@
 <!DOCTYPE HTML>
-<!--
-	Urban by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+
 <html>
 	<head>
-        <title>손민정음</title>
-		{{ dropzone.load_css() }}
-		{{ dropzone.style('border: 2px dashed #0087F7; margin: 2%; min-height: 400px; max-width: 46%;') }}
+        <title>손민정음 - 수어 번역</title>
+		<meta charset="utf-8" />
+			{{ dropzone.load_css() }}
+			{{ dropzone.style('border: 2px dashed #FACC2E; margin: 2%; min-height: 300px;') }}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="../static/assets/css/main.css" />
     </head>
@@ -26,19 +23,31 @@
 								<h1>수어 번역</h1>
 							</header>
                             <div class="tab">
-                                  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">수어&nbsp;>&nbsp;한국어</button>
-                                  <button class="tablinks" onclick="openCity(event, 'Paris')">한국어&nbsp;>&nbsp;수어</button>
+                                  <button class="tablinks" onclick="openCity(event, 's2k')" id="defaultOpen">수어&nbsp;>&nbsp;한국어</button>
+                                  <button class="tablinks" onclick="openCity(event, 'k2s')">한국어&nbsp;>&nbsp;수어</button>
                             </div>
 
-                            <div id="London" class="tabcontent">
-								  	{{ dropzone.create(action='translation') }}
-									{{ dropzone.load_js() }}
-									{{ dropzone.config() }}
+                            <div id="s2k" class="tabcontent">
+								<div class="flex flex-2">
+									<div class="col align-right">
+										{{ dropzone.create('/translation') }}
+										{{ dropzone.load_js() }}
+										{{ dropzone.config() }}
+										<button id="translation">번역하기</button>
+									</div>
+								</div>
                             </div>
 
-                            <div id="Paris" class="tabcontent">
-                                  <h3>Paris</h3>
-                                  <p>Paris is the capital of France.</p>
+                            <div id="k2s" class="tabcontent">
+								<div class="flex flex-2">
+									<div class="col align-right">
+										{{ dropzone.create(action='translation') }}
+										{{ dropzone.load_js() }}
+										{{ dropzone.config() }}
+										<!-- 번역으로 넘어가기 -->
+										<button id="translation">번역하기</button>
+									</div>
+								</div>
                             </div>
                         </div>
 					</section>
@@ -46,29 +55,22 @@
 
 
 		<!-- Scripts -->
-			<script src="static/assets/js/jquery.min.js"></script>
-			<script src="static/assets/js/jquery.scrolly.min.js"></script>
-			<script src="static/assets/js/jquery.scrollex.min.js"></script>
-			<script src="static/assets/js/skel.min.js"></script>
-			<script src="static/assets/js/util.js"></script>
-			<script src="static/assets/js/main.js"></script>
-
-
-    <script>
-      function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
-      document.getElementById("defaultOpen").click();
-    </script>
+			{% include 'script.html' %}
+			<script>
+			  function openCity(evt, cityName) {
+				var i, tabcontent, tablinks;
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {
+				  tabcontent[i].style.display = "none";
+				}
+				tablinks = document.getElementsByClassName("tablinks");
+				for (i = 0; i < tablinks.length; i++) {
+				  tablinks[i].className = tablinks[i].className.replace(" active", "");
+				}
+				document.getElementById(cityName).style.display = "block";
+				evt.currentTarget.className += " active";
+			  }
+			  document.getElementById("defaultOpen").click();
+			</script>
 	</body>
 </html>

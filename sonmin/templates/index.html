@@ -1,9 +1,5 @@
 <!DOCTYPE HTML>
-<!--
-	Urban by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+
 <html>
 	<head>
 		<title>손민정음</title>
@@ -12,8 +8,22 @@
 		<link rel="stylesheet" href="../static/assets/css/main.css" />
 	</head>
 	<body>
+		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="logo"><a href="/"><img src="static/images/son.png"/></a></div>
+				<a href="#menu">Menu</a>
+			</header>
 
-		{% include 'nav.html' %}
+			<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/">시작화면</a></li>
+					<li><a href="/translation">번역</a></li>
+					<li><a href="/dictionary">사전</a></li>
+					<li><a href="/center_info">센터정보 (지도/정보)</a></li>
+					<li><a href="/introduce">소개글</a></li>
+				</ul>
+			</nav>
 
 		<!-- Banner -->
 			<section id="banner">
@@ -25,6 +35,11 @@
 					<a href="/translation" class="button big scrolly">번역</a>
                     &nbsp; &nbsp;
                     <a href="/dictionary" class="button big scrolly">사전</a>
+					<div class="today">
+						<a href="#main" class="scrolly">오늘의 수어 알아보기
+						<br>
+						▼</a>
+					</div>
 				</div>
 			</section>
 
@@ -32,60 +47,35 @@
 			<div id="main">
 
 				<!-- Section -->
-					<section class="wrapper style1">
-						<div class="inner">
+					<section class="wrapper">
+						<div class="inner" style="margin-top: 5%; margin-bottom: 5%;">
 							<header class="align-center">
-								<h2>Aliquam ipsum purus dolor</h2>
-								<p>Cras sagittis turpis sit amet est tempus, sit amet consectetur purus tincidunt.</p>
+								<h2>오늘의 수어</h2>
+								<p>오늘의 수어가 쌓여 당신의 수어가 됩니다.</p>
 							</header>
-							<div class="flex flex-3">
-								<div class="col align-center">
-									<div class="image round fit">
-										<img src="static/images/pic03.jpg" alt="" />
-									</div>
-									<p>Sed congue elit malesuada nibh, a varius odio vehicula aliquet. Aliquam consequat, nunc quis sollicitudin aliquet. </p>
-									<a href="#" class="button">Learn More</a>
-								</div>
-								<div class="col align-center">
-									<div class="image round fit">
-										<img src="static/images/pic05.jpg" alt="" />
-									</div>
-									<p>Sed congue elit malesuada nibh, a varius odio vehicula aliquet. Aliquam consequat, nunc quis sollicitudin aliquet. </p>
-									<a href="#" class="button">Learn More</a>
-								</div>
-								<div class="col align-center">
-									<div class="image round fit">
-										<img src="static/images/pic04.jpg" alt="" />
-									</div>
-									<p>Sed congue elit malesuada nibh, a varius odio vehicula aliquet. Aliquam consequat, nunc quis sollicitudin aliquet. </p>
-									<a href="#" class="button">Learn More</a>
-								</div>
+                            <div class="gallery">
+                                 <div class="flex flex-3">
+									 {% for i in range(3) %}
+                                        <div class="col align-center">
+                                            <div>
+                                                <video width="250" height="150" src="{{ list[i].src }}" alt="" title="" controls autoplay
+                                                       loop/>
+                                            </div>
+                                            <h5>{{ list[i].mean }}</h5>
+											<button href="/translation">자세히 알아보기</button>
+                                        </div>
+									 {% endfor %}
+
+								 </div>
 							</div>
 						</div>
 					</section>
 
+
 			</div>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="copyright">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
-					</ul>
-					<p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
-				</div>
-			</footer>
-
 		<!-- Scripts -->
-			<script src="static/assets/js/jquery.min.js"></script>
-			<script src="static/assets/js/jquery.scrolly.min.js"></script>
-			<script src="static/assets/js/jquery.scrollex.min.js"></script>
-			<script src="static/assets/js/skel.min.js"></script>
-			<script src="static/assets/js/util.js"></script>
-			<script src="static/assets/js/main.js"></script>
+			{% include 'script.html' %}
 
 	</body>
 </html>

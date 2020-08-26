@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-/*
-	Urban by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
 /* Reset */
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -164,7 +158,7 @@
 
 	@media screen and (max-width: 736px) {
 
-		.container.\31 25\25 {
+		.container.\3125\25 {
 			width: 100%;
 			max-width: 112.5%;
 			min-width: 90%;
@@ -1588,7 +1582,7 @@
 	}
 
 	body, input, select, textarea {
-		font-family: "Scope One", serif;
+		font-family: "맑은 고딕", serif;
 		font-size: 13pt;
 		font-weight: 300;
 		line-height: 1.65;
@@ -1723,7 +1717,8 @@
 	}
 
 	h5 {
-		font-size: 0.9em;
+		font-size: 1em;
+		color: #2E2E2E;
 	}
 
 	h6 {
@@ -2084,9 +2079,18 @@
 				width: 66%;
 			}
 
+			.flex.flex-2 .col.col3 {
+				width: 50%;
+				float: left;
+			}
+
+			.flex.flex-2 .col.col3 a {
+				float: right;
+			}
+
 			@media screen and (max-width: 736px) {
 
-				.flex.flex-2 .col.col1, .flex.flex-2 .col.col2 {
+				.flex.flex-2 .col.col1, .flex.flex-2 .col.col2 .col.col3{
 					width: 100%;
 					margin-bottom: 2em;
 				}
@@ -2454,6 +2458,10 @@
 
 /* Image */
 
+	.gallery {
+		padding-top: 4%;
+	}
+
 	.image {
 		border: 0;
 		display: inline-block;
@@ -2797,15 +2805,29 @@
 			border-right: 0;
 		}
 
-		table td {
+		table .firstT{
 			padding: 0.75em 0.75em;
+			text-align: center;
+            line-height: 1.25em;
+            color: #666;
+            border-bottom: 1px solid #8d8d8d;
+		}
+
+		table .secondT{
+			padding: 0.75em 0.75em;
+			text-align: left;
+            line-height: 1.25em;
+            color: #666;
+            border-bottom: 1px solid #8d8d8d;
 		}
 
 		table th {
-			font-size: 0.9em;
+			background: #f9f9f9;
+			color: #666;
 			font-weight: 700;
-			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			padding: 10px 8px;
+			text-align: center;
+			border-bottom: 1px solid #8d8d8d;
 		}
 
 		table thead {
@@ -2866,10 +2888,15 @@
 		border-color: rgba(0, 0, 0, 0.1);
 	}
 
+	.list-group-item {
+		color: #2E2E2E;
+		font-size: 13px;
+	}
+
 /* Wrapper */
 
 	.wrapper {
-		padding: 3em 0 1em 0;
+		padding: 5em 0 3em 0;
 		position: relative;
 	}
 
@@ -3600,6 +3627,11 @@
 
 	}
 
+/* Button */
+.trans{
+	float: right;
+}
+
 /* Menu */
 
 	#menu {
@@ -3734,7 +3766,7 @@
 		display: -ms-flexbox;
 		-ms-flex-pack: center;
 		-ms-flex-align: center;
-		padding: 8em 0 6em 0;
+		padding-top: 8em;
 		-moz-align-items: center;
 		-webkit-align-items: center;
 		-ms-align-items: center;
@@ -3781,7 +3813,25 @@
 
 		#banner p {
 			color: rgba(255, 255, 255, 0.85);
-			font-size: 1.75em;
+			font-size: 1.55em;
+		}
+
+		#banner .today {
+			-moz-transform: scale(1.0);
+			-webkit-transform: scale(1.0);
+			-ms-transform: scale(1.0);
+			transform: scale(1.0);
+			-moz-transition: opacity 1s ease, -moz-transform 1s ease;
+			-webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+			-ms-transition: opacity 1s ease, -ms-transform 1s ease;
+			transition: opacity 1s ease, transform 1s ease;
+			opacity: 1;
+			padding-top: 30%;
+			color: rgba(255, 255, 255, 0.85);
+			font-size: 1.2em;
+			position: relative;
+			z-index: 2;
+			align-items: center;
 		}
 
 	@-moz-keyframes more {

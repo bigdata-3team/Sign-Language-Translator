@@ -1,44 +1,83 @@
 import pandas as pd
-from pandas import DataFrame
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
+import dataset_prepare as dp
+import data_augmentation as da
+
 dataset_annotation = pd.read_excel("수어_데이터셋_어노테이션.xlsx")
+# 메모리 문제 해결 후에 삭제할 부분
+dataset_annotation.loc[(dataset_annotation["한국어"].map(type) == int), "타입(단어/문장)"] = "숫자"
+
+dataset_annotation = dataset_annotation[dataset_annotation["타입(단어/문장)"] != "문장"]
+dataset_annotation = dataset_annotation[dataset_annotation["타입(단어/문장)"] != "숫자"]
 dataset_annotation
 
 unique = dataset_annotation["한국어"].unique()
-
-
 print(unique.shape)
 
+unique_idx_dict = dict(zip(unique, range(len(unique))))
+del(dataset_annotation)
 
-# #  RNN models in Tensorflow
-# - 기본적인 input data 구조 : (batch size, time steps, input length)
-#  > one, many의 의미는 time steps 와 관련 ex) many-to-one : 입력의 time steps > 1 / 출력의 time steps == 1
-#  - Many-to-One : input 형태 - (batch size, t, input length), t > 1 / output 형태 (batch size, 1, 1)
-# 
+xlen, ylen = 120, 67
+X, y, seq_len = dp.read_ai(xlen=xlen, ylen=ylen)
 
-inputs = tf.keras.Input(shape=(10, 128, 128, 3))
-input_shape = (10, 128, 128, 3)
-classes = 524
+y = (pd.Series(y)).map(unique_idx_dict)
+y = list(y); y
+y = np.array(y)
+
+for i in range(len(X)):
+    X[i] = X[i].reshape(-1, *(X[i].shape))
+    X[i] = X[i].astype(np.float32)
+
+X = np.concatenate(X, axis = 0); print(X.shape)
+
+X_train, y_train, X_valid, y_valid = dp.train_test_split(X, y, category=len(unique))
+##############
+del X
+del y
+X_train_len = X_train.shape[0]
+
+X_train_cat1 = da.apply_data_augmentation(X_train, [1, 2, 3])
+X_train = np.concatenate([X_train, X_train_cat1], axis=0)
+del X_train_cat1
+
+X_train_cat2 = da.apply_data_augmentation(X_train[:X_train_len], [5, 2, 3])
+X_train = np.concatenate([X_train, X_train_cat2], axis=0)
+del X_train_cat2
+
+y_train = np.concatenate([y_train, y_train, y_train])
+
+y_valid_onehot = tf.keras.utils.to_categorical(y_valid, len(unique))
+y_train_onehot = tf.keras.utils.to_categorical(y_train, len(unique))
+
+
+input_shape = (seq_len, ylen, xlen, 3)
+classes = len(unique)
 inputs = tf.keras.Input(shape = input_shape)
-conv1 = tf.keras.layers.Conv2D(32, (3, 3), activation="relu")
+conv1 = tf.keras.layers.Conv2D(32, (5, 5), activation="relu")
 layer_conv1 = tf.keras.layers.TimeDistributed(conv1)(inputs)
+normal_conv1 = tf.keras.layers.BatchNormalization()(layer_conv1)
 maxpool1 = tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2, 2))
-layer_maxpool1 = tf.keras.layers.TimeDistributed(maxpool1)(layer_conv1)
-conv2 = tf.keras.layers.Conv2D(64, (3, 3), activation="relu")
+layer_maxpool1 = tf.keras.layers.TimeDistributed(maxpool1)(normal_conv1)
+conv2 = tf.keras.layers.Conv2D(64, (5, 5), activation="relu")
 layer_conv2 = tf.keras.layers.TimeDistributed(conv2)(layer_maxpool1)
+normal_conv2 = tf.keras.layers.BatchNormalization()(layer_conv2)
 maxpool2 = tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2, 2))
-layer_maxpool2 = tf.keras.layers.TimeDistributed(maxpool2)(layer_conv2)
+layer_maxpool2 = tf.keras.layers.TimeDistributed(maxpool2)(normal_conv2)
 flatten = tf.keras.layers.Flatten()
 layer_flatten = tf.keras.layers.TimeDistributed(flatten)(layer_maxpool2)
-layer_lstm = tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(1000, activation='tanh'))(layer_flatten)
-outputs = tf.keras.layers.Dense(classes, activation="softmax")(layer_lstm)
+batch_normalization = tf.keras.layers.BatchNormalization()(layer_flatten)
+layer_lstm = tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(2 * classes, activation='tanh'))(batch_normalization)
+layer_dropout = tf.keras.layers.Dropout(0.25)(layer_lstm)
+outputs = tf.keras.layers.Dense(classes, activation="softmax")(layer_dropout)
 model = tf.keras.models.Model(inputs = inputs, outputs = outputs)
 
 model.summary()
+model.compile(loss = "categorical_crossentropy", optimizer = "rmsprop", metrics = ["accuracy"])
 
-model.compile(loss = "MSE", optimizer = "adam")
-model.fit(x, y, epochs = 100, batch_size = 1, verbose = 1)
+model.fit(X_train, y_train_onehot, batch_size=32, epochs=30, verbose = 1, validation_data = (X_valid, y_valid_onehot))
 
+
+# Unable to allocate 54.5 GiB for an array with shape (10449, 29, 67, 120, 3) and data type float64
