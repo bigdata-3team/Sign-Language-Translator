@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, Response
 from flask_sqlalchemy import SQLAlchemy, Pagination
 from flask_admin import Admin
 from flask_dropzone import Dropzone
-<<<<<<< HEAD
 from flask_paginate import Pagination, get_page_args
 from folium.plugins import MarkerCluster
 from folium import plugins
