@@ -11,10 +11,18 @@
 		<meta name="viewport" content="width=320, initial-scale=1" />
 		<link rel="stylesheet" href="../static/assets/css/main.css" />
 		<link rel="stylesheet" href="../static/assets/css/video.css" />
+
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 	</head>
 	<body class="subpage">
@@ -41,19 +49,25 @@
 
 				<!-- Section -->
 					<section class="wrapper">
-						<div class="inner">
+						<div class="inner" style="align:center; width:75%;">
 							<header class="align-center">
 								<h1>프로젝트 소개</h1>
 								<p>모두가 불편함 없이 의사소통을 할 수 있는 날을 바라며</p>
 							</header>
-							<div class="flex flex-2">
-								<div class="col col2">
-									<h3 style="text-align:center;">< 손민정음 > 이란?</h3>
+							<div style="width:35%; float:right; margin:0 5% 0 0;">
+								<div>
+									<a href="/" class="link"><img src="../static/images/son.png" alt=""/></a>
+								</div>
+							</div>
+							<div>
+								<div style="width:60%;">
+									<h3 style="text-align:center;">< 손민정음 > 이란?</h3><br>
 									<p>
 										저희 프로젝트는 수어를 인식하고, 수어가 의미하는 문장을 출력해주는 번역 시스템입니다.
 									</p>
 									<p>
-										농인들이 사용하는 수어는 일반인들이 사용하는 언어체계와 다릅니다. 수어에서는 조사와 시제, 명사와 동사의 구분이 없습니다.
+										농인들이 사용하는 수어는 일반인들이 사용하는 언어체계와 다릅니다.
+										수어에서는 조사와 시제, 명사와 동사의 구분이 없습니다.
 										예를 들어, "나는 너를 좋아해" 라는 문장을 수어로는 "나", "너", "좋다"라고 표현합니다.
 									</p>
 									<p>
@@ -70,11 +84,6 @@
 									</p>
 
 								</div>
-								<div class="col col1 first">
-									<div>
-										<a href="/" class="link"><img src="../static/images/son.png" alt=""/></a>
-									</div>
-								</div>
 							</div>
 							<p></p>
 							<p></p>
@@ -89,8 +98,8 @@
 							</header>
 
 						   <table width="device-width">
-							   <tr valign="top">
-								   <td align="middle">
+							   <tr valign="top" style="border:none;">
+								   <td align="middle" style="background-color:#fafafa;">
 									   <p align="middle">
 										   <video src="static/introduce_video/introduce_video.mp4" controls controlslist="nodownload" muted playsinline/>
 									   </p>
@@ -116,8 +125,8 @@
 							</header>
 
 						   <table width="device-width">
-							   <tr>
-								   <td align="middle">
+							   <tr style="border:none;">
+								   <td align="middle" style="background-color:#FFFFFF;">
 									   <p align="middle">
 										   <img src="static/images/Word_cloud.png" width="640" align="middle"/>
 									   </p>
@@ -129,65 +138,84 @@
 					</section>
 
 
+
 			</div>
 
 
-
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="copyright">
-					<div class="btn-group">
-						<button type="button" class="btn secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:6px 6px;">
-						박병근
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="mailto:qkrparrk@gmail.com" target="_blank">이메일 보내기</a>
-							<a class="dropdown-item" href="tel:010-4123-3663">전화하기</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="https://github.com/zordiac8270" target="_blank">Github page</a>
-						</div>
+			<section class="wrapper style1">
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<header class="align-center">
+							<h2>팀원 정보</h2>
+							<br>
+							<p>팀원들의 이름을 눌러보세요</p>
+						</header>
 					</div>
 
-					<div class="btn-group">
-						<button type="button" class="btn secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:6px 6px;">
-						유성민
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="mailto:chelirt13@naver.com" target="_blank">이메일 보내기</a>
-							<a class="dropdown-item" href="tel:010-7355-8581">전화하기</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="https://github.com/YUSEONGMIN" target="_blank">Github page</a>
-						</div>
-					</div>
+					<div class="copyright">
+							<div>
+								<a class="btn btn-lg btn-warning" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" style="margin:3px 9%;"> 박병근 </a>
+								<a class="btn btn-lg btn-warning" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" style="margin:3px 9%;"> 유성민 </a>
+								<a class="btn btn-lg btn-warning" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" style="margin:3px 9%;"> 이예지 </a>
+								<a class="btn btn-lg btn-warning" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" style="margin:3px 9%;"> 황효석 </a>
+							</div>
 
-					<div class="btn-group">
-						<button type="button" class="btn secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:6px 6px;">
-						이예지
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="mailto:yejji0808@naver.com" target="_blank">이메일 보내기</a>
-							<a class="dropdown-item" href="tel:010-5280-0061">전화하기</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="https://github.com/yeji0808" target="_blank">Github page</a>
-						</div>
-					</div>
+							<div class="row">
+								<div class="col">
+									<div class="collapse multi-collapse" id="multiCollapseExample1">
+										<div class="card card-body" style="border-radius:40px;">
+											<ul style="list-style:none; margin:0; padding:0;">
+												<li><a class="dropdown-item" href="mailto:qkrparrk@gmail.com" target="_blank">[ e-mail 보내기 ]</a>zordiac00@gmail.com</li><br>
+												<li><a class="dropdown-item" href="tel:010-4123-3663">[ 전화 걸기 ]</a>010-4123-3663</li><br>
+												<li><a class="dropdown-item" href="https://github.com/zordiac8270" target="_blank">[ Github 바로가기 ]</a>https://github.com/zordiac8270</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="collapse multi-collapse" id="multiCollapseExample2">
+										<div class="card card-body" style="border-radius:40px;">
+											<ul style="list-style:none; margin:0; padding:0;">
+											<li><a class="dropdown-item" href="mailto:chelirt13@naver.com" target="_blank">[ e-mail 보내기 ]</a>chelirt13@naver.com</li><br>
+											<li><a class="dropdown-item" href="tel:010-7355-8581">[ 전화 걸기 ]</a>010-7355-8581</li><br>
+												<li><a class="dropdown-item" href="https://github.com/YUSEONGMIN" target="_blank">[ Github 바로가기 ]</a>https://github.com/YUSEONGMIN</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="collapse multi-collapse" id="multiCollapseExample3">
+										<div class="card card-body" style="border-radius:40px;">
+											<ul style="list-style:none; margin:0; padding:0;">
+												<li><a class="dropdown-item" href="mailto:yejji0808@naver.com" target="_blank">[ e-mail 보내기 ]</a>yejji0808@naver.com</li><br>
+												<li><a class="dropdown-item" href="tel:010-5280-0061">[ 전화 걸기 ]</a>010-5280-0061</li><br>
+												<li><a class="dropdown-item" href="https://github.com/yeji0808" target="_blank">[ Github 바로가기 ]</a>https://github.com/yeji0808</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="collapse multi-collapse" id="multiCollapseExample4">
+										<div class="card card-body" style="border-radius:40px;">
+											<ul style="list-style:none; margin:0; padding:0;">
+												<li><a class="dropdown-item" href="mailto:hhseok960@gmail.com" target="_blank">[ e-mail 보내기 ]</a>hhseok960@gmail.com</li><br>
+												<li><a class="dropdown-item" href="tel:010-9677-1976">[ 전화 걸기 ]</a>010-9677-1976</li><br>
+												<li><a class="dropdown-item" href="https://github.com/hhseok960" target="_blank">[ Github 바로가기 ]</a>https://github.com/hhseok960</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
 
-					<div class="btn-group">
-						<button type="button" class="btn secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:6px 6px;">
-						황효석
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="mailto:hhseok960@gmail.com" target="_blank">이메일 보내기</a>
-							<a class="dropdown-item" href="tel:010-9677-1976">전화하기</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="https://github.com/hhseok960" target="_blank">Github page</a>
-						</div>
-					</div>
 
-					<p></p>
-					<p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
-				</div>
-			</footer>
+						</div>
+
+						<p></p>
+
+					</div>
+				</footer>
+			</section>
 
 		<!-- Scripts -->
 			<script src="../static/assets/js/jquery.min.js"></script>
