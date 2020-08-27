@@ -31,64 +31,63 @@
             <section class="wrapper">
                 <div class="inner">
 
-                    <div class="flex flex-4">
+                    <div class="flex flex-3">
                         <div class="container">
                             <div class="row">
 
-                            <div class="col-lg-2">
-                                <div class="list-group">
-                                  <a href="#" class="list-group-item">법률</a>
-                                  <a href="#" class="list-group-item">교통</a>
-                                  <a href="#" class="list-group-item">의학</a>
-                                  <a href="#" class="list-group-item">정보통신</a>
-                                  <a href="#" class="list-group-item">불교</a>
-                                  <a href="#" class="list-group-item">천주교</a>
-                                  <a href="#" class="list-group-item">기독교</a>
-                                  <a href="#" class="list-group-item">국어 교과 용어</a>
-                                  <a href="#" class="list-group-item">경제</a>
-                                  <a href="#" class="list-group-item">정치</a>
+                            <form action="/dictionary" method="POST">
+                                <div class="col-lg-2">
+                                    <div class="list-group" role="tablist">
+                                      <input type="submit" value="법률" name="category">
+                                      <input type="submit" value="교통" name="category">
+                                      <input type="submit" value="의학" name="category">
+                                      <input type="submit" value="정보통신" name="category">
+                                      <input type="submit" value="불교" name="category">
+                                      <input type="submit" value="천주교" name="category">
+                                      <input type="submit" value="기독교" name="category">
+                                      <input type="submit" value="국어 교과 용어" name="category">
+                                      <input type="submit" value="경제" name="category">
+                                      <input type="submit" value="정치" name="category">
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
 
-                            <div class="col-lg-10">
+                            <div class="flex flex-2">
                                 <header class="align-center">
                                     <h1>수어 사전</h1>
                                     <p></p>
                                     <p>동영상을 재생해 보세요</p>
                                 </header>
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>번 호</th>
-                                            <th>영 상</th>
-                                            <th>의 미</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for video in videos %}
-                                        <tr>
-                                            <td class="firstT">{{ loop.index + (page - 1) * per_page }}</td>
-                                            <td class="secondT">
-                                                <video width="250" height="150" src="{{ video.src }}" alt="" title="" controls
-                                                />
-                                            </td>
-                                            <td>{{ video.mean}}</td>
-                                        </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                    <div class="pagedlist" style="margin-left: 20%;">{{ pagination.links }}</div>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>번 호</th>
+                                                    <th>영 상</th>
+                                                    <th>의 미</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for video in videos %}
+                                                        <tr>
+                                                            <td class="firstT">{{ loop.index + (page - 1) * per_page }}</td>
+                                                            <td class="secondT">
+                                                                <video width="250" height="150" src="{{ video.src }}" alt="" title="" controls
+                                                                />
+                                                            </td>
+                                                            <td>{{ video.mean }}</td>
+                                                        </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <div class="pagedlist" style="margin-left: 20%;">{{ pagination.links }}</div>
+                                        </div>
+
                                 </div>
-                            </div>
-
-
-                    </div>
                         </div>
                     </div>
-
+                    </div>
                 </div>
-
             </section>
 
         </div>

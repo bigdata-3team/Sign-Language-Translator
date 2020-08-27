@@ -68,6 +68,14 @@ class DictionaryVideo(db.Model):
 db.create_all()
 
 
+# dictionary_category 테이블 클래스
+class DictionaryCategory(db.Model):
+    __tablename__ = "dictionary_category"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    category = db.Column(db.String, nullable=False)
+db.create_all()
+
+
 # 파일 업로드 공간 작동
 app.config.update(
     UPLOADED_PATH=upload_dir,
@@ -127,26 +135,39 @@ def translation():
 
 
 # 수어 영상
-videos = DictionaryVideo.query.all()
-def get_videos(offset=0, per_page=10):
+def get_videos(offset=0, per_page=10, videos=[]):
     return videos[offset: offset + per_page]
 
 
 # 사전
-@app.route('/dictionary')
+@app.route('/dictionary', methods=['POST', 'GET'])
 def dictionary():
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page')
-    total = len(videos)
-    pagination_users = get_videos(offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
-    print(pagination_users)
+    if request.method == 'POST':
+        page, per_page, offset = get_page_args(page_parameter='page',
+                                               per_page_parameter='per_page')
+        category = request.form["category"]
+
+        videos = DictionaryVideo.query.filter_by(category=category).all()
+        total = len(videos)
+
+        pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
+        pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
+    else:
+        page, per_page, offset = get_page_args(page_parameter='page',
+                                               per_page_parameter='per_page')
+
+        videos = DictionaryVideo.query.all()
+        total = len(videos)
+        pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
+        pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
     return render_template('dictionary.html',
-                           videos=pagination_users,
-                           page=page,
-                           per_page=per_page,
-                           pagination=pagination
-                           )
+                               videos=pagination_users,
+                               page=page,
+                               per_page=per_page,
+                               pagination=pagination
+                               )
 
 
 # # 센터 정보 -맵
