@@ -29,6 +29,7 @@
 ## 2. Sign-Language-Translator - 페이지 기능 소개
 
 ### (1) 시작화면 [ '***/***' ]
+![no-img](../Sign-Language-Translator/sonmin/static/images/main.png)
 저희 사이트의 시작 페이지입니다.
 
 "번역", "사전" 버튼을 통해 저희 사이트의 [번역], [사전] 페이지로 이동이 가능합니다.
@@ -37,11 +38,13 @@
 - Github에 올릴 수 있는 파일 제한(1000개)으로 인해 "경제" 카테고리 동영상만 재생 가능합니다.
 
 ### (2) 번역화면 [ '***/translation***' ]
+![no-img](../Sign-Language-Translator/sonmin/static/images/translate.png)
 이 페이지에서는 탭 화면을 통해 (1)***수어를 한국어***로 또는 (2)***한국어를 수어***로 번역해줍니다.
 
 ====== 모델설명 =======
 
 ### (3) 사전화면 [ '***/dictionary***' ]
+![no-img](../Sign-Language-Translator/sonmin/static/images/dictionary.png)
 이 페이지에서는 "국립국어원" 페이지에서 크롤링 및 스크래핑 한 동영상을 보여드립니다.
 
 [ sonmin.sqlite ]데이터베이스의 [ final_dictionary ]테이블에 있는 카테고리 칼럼 값으로 Pagination된 페이지를 보여줍니다.
@@ -52,6 +55,7 @@
 - "시작화면"의 "오늘의 수어 알아보기"의 같은 이슈로 인하여, "경제" 카테고리 동영상만 재생 가능합니다.
 
 ### (4) 센터정보 [ '***/center_info***' ]
+![no-img](../Sign-Language-Translator/sonmin/static/images/center_info.png)
 이 페이지에서는 "한국농아인협회" 페이지의 공지사항을 보여드리고, 이와 함께 "한국농아인협회"와 관련된 "센터 지도"를 클러스터링을 통해 보여드립니다.
 
 "한국농아인협회" 페이지의 공지사항을 크롤링하여 [ sonmin.sqlite ]데이터베이스의 [ center_notice ]테이블에 저장하고, 이를 Pagination하여 보여드립니다.
@@ -63,6 +67,7 @@
 [ center_map ]테이블의 값들을, folium에 사용하여 페이지를 생성했습니다.
 
 ### (5) 소개글 [ '***/intro***' ]
+![no-img](../Sign-Language-Translator/sonmin/static/images/intro.png)
 저희 사이트의 마지막 페이지입니다.
 
 이 페이지에서는 저희가 [ 프로젝트 주제를 선정하게 된 이유 ]와 [ 프로젝트 관련 영상 ], [ 키워드를 통한 Word Cloud ], 그리고 [ 팀원 정보 ]를 보여드립니다.
