@@ -100,7 +100,7 @@ src       : String
 
 requirements.txt는 [ git clone - ] 명령어 실행 후에 [ pip install -U -r requirements.txt ] 명령어를 실행시켜 주시면 됩니다.
 
-자세한 사용방법은 아래에 적혀있으니 따라서 실행해 주세요.
+자세한 사용방법은 아래의 설명을  실행해 주세요.
 
 
 ## 5. 처음 사용하시는 분들께
