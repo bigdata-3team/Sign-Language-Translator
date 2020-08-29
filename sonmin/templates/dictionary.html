@@ -8,9 +8,6 @@
         <link rel="stylesheet" href="../static/assets/css/main.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
         <style>
-            table {
-                width: 500px;
-            }
 
             div .pagedlist {
                 display: table;
@@ -31,13 +28,13 @@
             <section class="wrapper">
                 <div class="inner">
 
-                    <div class="flex flex-3">
-                        <div class="container">
+                    <div class="row 200%">
+                        <div class="2u 12u$(medium)">
                             <div class="row">
 
                             <form action="/dictionary" method="POST">
                                 <div class="col-lg-2">
-                                    <div class="list-group" role="tablist">
+                                    <div class="list-group" role="tablist" style="position: absolute;">
                                       <input type="submit" value="법률" name="category">
                                       <input type="submit" value="교통" name="category">
                                       <input type="submit" value="의학" name="category">
@@ -51,41 +48,48 @@
                                     </div>
                                 </div>
                             </form>
-
-                            <div class="flex flex-2">
-                                <header class="align-center">
-                                    <h1>수어 사전</h1>
-                                    <p></p>
-                                    <p>동영상을 재생해 보세요</p>
-                                </header>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                <tr>
-                                                    <th>번 호</th>
-                                                    <th>영 상</th>
-                                                    <th>의 미</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                {% for video in videos %}
-                                                        <tr>
-                                                            <td class="firstT">{{ loop.index + (page - 1) * per_page }}</td>
-                                                            <td class="secondT">
-                                                                <video width="250" height="150" src="{{ video.src }}" alt="" title="" controls
-                                                                />
-                                                            </td>
-                                                            <td>{{ video.mean }}</td>
-                                                        </tr>
-                                                {% endfor %}
-                                                </tbody>
-                                            </table>
-                                            <div class="pagedlist" style="margin-left: 20%;">{{ pagination.links }}</div>
-                                        </div>
-
-                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="10u 12u$(medium)">
+                            <header class="align-center">
+                                <h1>수어 사전</h1>
+                                <p></p>
+                                <p>동영상을 재생해 보세요</p>
+                            </header>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="*"/>  <!--나머지 크기-->
+                                        <col width="15%"/>
+                                        <col width="*"/>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>번 호</th>
+                                        <th>영 상</th>
+                                        <th>의 미</th>
+                                        <th> 뜻 </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for video in videos %}
+                                            <tr>
+                                                <td class="firstT">{{ loop.index + (page - 1) * per_page }}</td>
+                                                <td class="secondT">
+                                                    <video width="250" height="150" src="{{ video.src }}" alt="" title="" controls
+                                                    />
+                                                </td>
+                                                <td class="firstT" style="text-align: center;">{{ video.word }}</td>
+                                                <td class="secondT">{{ video.mean }}</td>
+                                            </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="pagedlist" style="margin-left: 20%;">{{ pagination.links }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
