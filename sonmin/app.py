@@ -55,9 +55,10 @@ class CenterNotice(db.Model):
 
 # dictionary_video 테이블 클래스
 class DictionaryVideo(db.Model):
-    __tablename__ = "dictionary_video"
+    __tablename__ = "final_dictionary"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     category = db.Column(db.String, nullable=False)
+    word = db.Column(db.String, nullable=False)
     mean = db.Column(db.String, nullable=False)
     src = db.Column(db.String, nullable=False)
     db.create_all()
@@ -374,55 +375,11 @@ def handle_form():
     return render_template('translated.html', result=result, src=src)
 
 
-# @app.route('/translation_word', methods=['POST'])
-# def rtranslation():
-#     if request.method == 'POST':
-#         value = request.form['test']
-#         print(request.form)
-#         print(value)
-#         word_list = wordcraw(value)
-#         print(word_list)
-#
-#         path = 'static/translate_video/'
-#         print(os.listdir(path)[:])
-#         video_list = [(_[:-4], path + _) for _ in os.listdir(path)[:]]
-#         print(video_list) # .mp4 뒤에서 4글자
-#
-#         show_video = []
-#         for i in range(len(word_list)):
-#             if word_list[i] in [video_list[_][0] for _ in range(len(video_list))]:
-#                 print(video_list[[video_list[_][0] for _ in range(len(video_list))].index(word_list[i])])
-#                 show_video.append(video_list[[video_list[_][0] for _ in range(len(video_list))].index(word_list[i])])
-#             else:
-#                 for j in range(len(word_list[i])):
-#                     print(hgtk.letter.decompose(word_list[i][j]))
-#
-#                     for l in range(len(hgtk.letter.decompose(word_list[i][j]))):
-#                         nothing_word = list(hgtk.letter.decompose(word_list[i][j]))
-#                         if nothing_word[l] == '':
-#                             continue
-#                         print(video_list[[video_list[_][0] for _ in range(len(video_list))].index(
-#                             hgtk.letter.decompose(word_list[i][j])[l])])
-#                         show_video.append(video_list[[video_list[_][0] for _ in range(len(video_list))].index(
-#                             hgtk.letter.decompose(word_list[i][j])[l])])
-#         print(show_video, len(show_video))
-#         next_video = ["static/translate_video/" + show_video[_][0] + ".mp4" for _ in range(len(show_video))]
-#         print(next_video)
-#         return show_video, next_video
-#
-#
-# @app.route('/translated2', methods=['POST'])
-# def rtranslated():
-#     global show_video, next_video
-#     return render_template('translated2.html', show_list=show_video, length=len(show_video), next_videos=next_video)
-
 @app.route('/translation_word', methods=['GET', 'POST'])
 def rtranslation():
     if request.method == 'POST':
         value = request.form['test']
-        print(value)
         word_list = wordcraw(value)
-        print(word_list)
 
         path = 'static/translate_video/'
         video_list = [(_[:-4], path + _) for _ in os.listdir(path)[:]]
@@ -444,9 +401,7 @@ def rtranslation():
                             hgtk.letter.decompose(word_list[i][j])[l])])
                         show_video.append(video_list[[video_list[_][0] for _ in range(len(video_list))].index(
                             hgtk.letter.decompose(word_list[i][j])[l])])
-        print(show_video, len(show_video))
         next_video = ["static/translate_video/" + show_video[_][0] + ".mp4" for _ in range(len(show_video))]
-        print(next_video)
 
     return render_template('translated2.html', show_list=show_video, length=len(show_video), next_videos=next_video)
 
