@@ -5,23 +5,16 @@
 		<title>손민정음 - 센터 정보</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../static/assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/assets/css/main.css" />
 		<style type="text/css">
 
-			a {
-				text-decoration: none;
-				color: #09f;
-			}
-
 			a:hover {
-
 				text-decoration: underline;
 			}
 
 			caption {
 				display: none;
-				/*안보이게 설정, 화면에 보이지는 않지만 스크린리더리로 읽어짐.*/
 			}
 
 			table {
@@ -29,10 +22,13 @@
 				border-top: 2px solid #8d8d8d;
 			}
 
-
-			td.article { /*article 클래스가 적용된 열만 좌측 정렬*/
-				text-align: left;
+			tbody tr td {
+				padding: 3px;
 			}
+			td.center { /*article 클래스가 적용된 열만 좌측 정렬*/
+				text-align: center;
+			}
+
     	</style>
 	</head>
 	<body class="subpage">
@@ -77,21 +73,21 @@
 												<tbody>
 													{% for user in users %}
 													<tr>
-														<td>{{ loop.index + (page -1) * per_page }}</td>
+														<td class="center">{{ loop.index + (page -1) * per_page }}</td>
 														<td><a href="{{ user.url }}" target="_blank">{{ user.title }}</a></td>
-														<td>{{ user.date }}</td>
+														<td class="center">{{ user.date }}</td>
 													</tr>
 													{% endfor %}
 												</tbody>
 											</table>
-										<div class="pagedlist" style="margin-left: 20%;">{{ pagination.links }}</div>
+											<div class="pagedlist">{{ pagination.links }}</div>
 									</div>
 
 
 									<div class="4u$ 12u$(medium)">
 										<h3 style="margin-bottom: 10px;">센터 지도</h3>
 										<div>
-											<iframe src="http://127.0.0.1:5000/map" width="400px" height="500px"></iframe>
+											<iframe src="http://127.0.0.1:5000/map" width="350px" height="400px"></iframe>
 										</div>
 									</div>
 								</div>

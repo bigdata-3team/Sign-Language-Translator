@@ -28,20 +28,25 @@
             </div>
 
             <div id="s2k" class="tabcontent">
+                <div class="left">
+                    <div>
+                        <video width="640" height="320" controls controlsList="nodownload" muted>
+                            <source src="" type="video/mp4">
+                        </video>
+                    </div>
 
-                <form action="{{ url_for('handle_form') }}" enctype="multipart/form-data" method="post">
-                    {{ dropzone.create('/translation') }}
-                    <input type="submit" id="submit" value="번역하기" style="">
-                </form>
-                {{ dropzone.load_js() }}
-                {{ dropzone.config() }}
+                </div>
 
+                <div class="right">
+                    <div class="col">
+
+                    </div>
+                </div>
             </div>
 
             <div id="k2s" class="tabcontent">
                 <div class="flex flex-2">
                     <div class="col align-right">
-
                         <form id="accel_form">
                             <div class="flex_box">
                                 <div class="left">
@@ -49,28 +54,51 @@
                                         번역할 언어
                                     </div>
 
-
                                     <form action="/translation_word" method="post">
                                     </form>
 
                                     <form action="/translation_word" method="post">
-                                        <p>테스트 : <textarea type="text" name="test"></textarea></p>
+                                        <p><textarea type="text" name="test"></textarea></p>
                                         <input type="submit" value="정보 넘기기">
                                     </form>
 
-                                </div>
 
+                                </div>
                                 <div class="right">
                                     <div>
                                         번역된 언어
                                     </div>
+
+                                    {% for i in range(0,length) %}
+                                    {{show_list[i][0]}} </br>
+
+                                    <script type="text/javascript">
+                                        var nextVideo = "../static/translate_video/{{show_list[i][0]}}.mp4";
+                                        var videoPlayer = document.getElementById('videoarea');
+                                        videoPlayer.onended = function () {
+                                            videoPlayer.src = nextVideo;
+                                        }
+                                    </script>
+
+                                    <!--                                    <video id="videoPlayer{{i}}" src="../static/translate_video/{{show_list[i][0]}}.mp4"-->
+                                    <!--                                           autoplay controls/>-->
+
+                                    <video id="videoarea" controls="controls" poster=""
+                                           src="../static/translate_video/{{show_list[i][0]}}.mp4"></video>
+
+                                    {{next_videos}}
+                                    {% endfor %}
+
+
                                 </div>
-
-
                             </div>
                     </div>
+                    </form>
+                    <!-- 번역으로 넘어가기 -->
                 </div>
             </div>
+
+        </div>
     </section>
 </div>
 

@@ -2890,8 +2890,17 @@
 
 	.list-group-item {
 		color: #2E2E2E;
-		font-size: 13px;
+		font-size: 10%;
 	}
+
+
+	.pagedlist {
+		display: flex;
+  		justify-content: center;
+  		align-items: center;
+	}
+
+
 
 /* Wrapper */
 
