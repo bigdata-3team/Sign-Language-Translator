@@ -32,19 +32,20 @@
                         <div class="2u 12u$(medium)">
                             <div class="row">
                             <!-- 버튼 누르면 해당 카테고리 보여줄 수 있는 form -->
-                            <form action="/dictionary" method="POST">
+                            <form action="/dictionary" method="POST" autocomplete="off">
                                 <div class="col-lg-2">
                                     <div class="list-group" role="tablist" style="position: absolute;">
-                                      <input type="submit" value="법률" name="category">
-                                      <input type="submit" value="교통" name="category">
-                                      <input type="submit" value="의학" name="category">
-                                      <input type="submit" value="정보통신" name="category">
-                                      <input type="submit" value="불교" name="category">
-                                      <input type="submit" value="천주교" name="category">
-                                      <input type="submit" value="기독교" name="category">
-                                      <input type="submit" value="국어 교과 용어" name="category">
-                                      <input type="submit" value="경제" name="category">
-                                      <input type="submit" value="정치" name="category">
+                                        <input type="text" value="" name="search" placeholder="검색어를 입력하세요" style="font-size:10px;">
+                                        <input type="submit" value="법률" name="category">
+                                        <input type="submit" value="교통" name="category">
+                                        <input type="submit" value="의학" name="category">
+                                        <input type="submit" value="정보통신" name="category">
+                                        <input type="submit" value="불교" name="category">
+                                        <input type="submit" value="천주교" name="category">
+                                        <input type="submit" value="기독교" name="category">
+                                        <input type="submit" value="국어 교과 용어" name="category">
+                                        <input type="submit" value="경제" name="category">
+                                        <input type="submit" value="정치" name="category">
                                     </div>
                                 </div>
                             </form>
@@ -64,7 +65,7 @@
                                         <col width="10%"/>
                                         <col width="*"/>  <!--나머지 크기-->
                                         <col width="15%"/>
-                                        <col width="*"/>
+                                        <col width="50%"/>
                                     </colgroup>
                                     <thead>
                                     <tr>

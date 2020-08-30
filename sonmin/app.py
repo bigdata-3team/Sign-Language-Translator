@@ -484,13 +484,84 @@ def dictionary():
     if request.method == 'POST':
         page, per_page, offset = get_page_args(page_parameter='page',
                                                per_page_parameter='per_page')
-        category = request.form["category"]
+        try:
+            request.form["category"]
 
-        videos = DictionaryVideo.query.filter_by(category=category).all()
-        total = len(videos)
+            try:
+                request.form["search"]
 
-        pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
-        pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+                # category & search
+                if not request.form["search"]:
+                    # no search
+                    page, per_page, offset = get_page_args(page_parameter='page',
+                                                           per_page_parameter='per_page')
+                    category = request.form["category"]
+
+                    videos = DictionaryVideo.query.filter_by(category=category).all()
+                    total = len(videos)
+
+                    pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
+                    pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+                else:
+                    # search
+                    page, per_page, offset = get_page_args(page_parameter='page',
+                                                           per_page_parameter='per_page')
+                    word = request.form["search"]
+
+                    videos = DictionaryVideo.query.filter_by(word=word).all()
+                    total = len(videos)
+
+                    pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
+                    pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
+            except:
+                # category & no search
+                category = request.form["category"]
+
+                videos = DictionaryVideo.query.filter_by(category=category).all()
+                total = len(videos)
+
+                pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
+                pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
+
+        except:
+            # no category
+
+            try:
+                request.form["search"]
+
+                # no category & search
+                page, per_page, offset = get_page_args(page_parameter='page',
+                                                       per_page_parameter='per_page')
+                word = request.form["search"]
+
+                videos = DictionaryVideo.query.filter_by(word=word).all()
+                total = len(videos)
+
+                pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
+                pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
+            except:
+                # no category & no search
+                category = request.form["category"]
+
+                videos = DictionaryVideo.query.filter_by(category=category).all()
+                total = len(videos)
+
+                pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
+                pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
+
+            page, per_page, offset = get_page_args(page_parameter='page',
+                                                   per_page_parameter='per_page')
+            word = request.form["search"]
+
+            videos = DictionaryVideo.query.filter_by(word=word).all()
+            total = len(videos)
+
+            pagination_users = get_videos(offset=offset, per_page=per_page, videos=videos)
+            pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     else:
         page, per_page, offset = get_page_args(page_parameter='page',

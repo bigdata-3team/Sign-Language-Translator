@@ -63,13 +63,17 @@
                                                        loop/>
                                             </div>
                                             <h5>{{ list[i].category }} : {{ list[i].word }}</h5>
+											<form action="/dictionary" method="POST" class="form-inline">
+												<input type="hidden" value="{{ list[i].word }}" name="search">
+												<input type="submit" value="자세히 알아보기">
+											</form>
                                         </div>
 									 {% endfor %}
 									 <!-- 무작위로 동영상 3개 보여주기 -->
 
 
 								 </div>
-								<button type="button" onclick="location.href='/dictionary'">단어 자세히 알아보기</button>
+<!--								<button type="button" onclick="location.href='/dictionary'">단어 자세히 알아보기</button>-->
 							</div>
 						</div>
 					</section>
