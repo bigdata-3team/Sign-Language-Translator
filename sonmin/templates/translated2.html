@@ -70,22 +70,98 @@
                                         번역된 언어
                                     </div>
 
-                                    {% for i in range(0,length) %}
-                                    </br>
+<figure id="video_player">
+	<div id="video_container">
+		<video controls poster="vid-glacier.jpg">
 
-                                    <script type="text/javascript">
-                                        var nextVideo = "../static/translate_video/{{show_list[i][0]}}.mp4";
-                                        var videoPlayer = document.getElementById('videoarea');
-                                        videoPlayer.onended = function () {
-                                            videoPlayer.src = nextVideo;
-                                        }
-                                    </script>
+            <source src="../static/translate_video/{{show_list[0][0]}}.mp4" type="video/mp4">
+            <source src="nambia1.webm" type="video/webm">
+        </video>
+	</div>
+	<figcaption>
 
-                                    <video id="videoarea" controls="controls" poster=""
-                                           src="../static/translate_video/{{show_list[i][0]}}.mp4"></video>
+        {% for i in range(0,length) %}
+        <a href="../static/translate_video/{{show_list[i][0]}}.mp4"><img src="static/images/pic03.jpg" alt="Nambia Timelapse 2"></a>
+        {% endfor %}
 
-                                    {% endfor %}
+		</a>
+	</figcaption>
+</figure>
 
+
+
+<style>
+    #video_player {
+        display: table;
+        line-height: 0;
+        font-size: 0;
+        background: #000;
+    }
+
+    #video_player video,
+    #video_player figcaption {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    #video_player figcaption {
+        width: 20px;
+    }
+
+    #video_player figcaption a {
+        display: block;
+        opacity: .5;
+        transition: 1s opacity;
+    }
+
+    #video_player figcaption a img,
+    figure video {
+        width: 100%;
+        height: auto;
+    }
+
+    #video_player figcaption a:hover {
+        opacity: 1;
+    }
+
+</style>
+
+<script>
+var video_player = document.getElementById("video_player"),
+links = video_player.getElementsByTagName('a');
+for (var i=0; i<links.length; i++) {
+	links[i].onclick = handler;}
+
+function handler(e) {
+	e.preventDefault();
+	videotarget = this.getAttribute("href");
+	filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget;
+	video = document.querySelector("#video_player video");
+	video.removeAttribute("controls");
+	video.removeAttribute("poster");
+	source = document.querySelectorAll("#video_player video source");
+	source[0].src = filename + ".mp4";
+	source[1].src = filename + ".webm";
+	video.load();
+	video.play();}
+
+    video.addEventListener('ended', function () {
+        allLnks[currentVid].classList.remove("currentvid");
+        if ((currentVid + 1) >= lnkNum) {
+            nextVid = 0;
+        } else {
+            nextVid = currentVid + 1;
+        }
+        playVid(nextVid);
+    })
+    video.addEventListener('mouseenter',
+        function () {
+            video.setAttribute("controls", "true");
+        })
+    video.addEventListener('mouseleave', function () {
+        video.removeAttribute("controls");
+    })
+</script>
 
                                 </div>
                             </div>
