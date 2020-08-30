@@ -354,6 +354,23 @@ def prediction_model(file_name):
         if idx == pred:
             result = sign
 
+    if not result:
+        model_path = "./static/model/sonmin_model.h5"
+        with tf.device("gpu:0"):
+            train_model = tf.keras.models.load_model(model_path)
+        img_input = frame_extraction("./uploads/{0}".format(file_name))
+
+        pred = train_model.predict(img_input)
+        pred = np.argmax(pred)
+
+        with open('./static/model/sonmin_word.p', 'rb') as file:
+            idx_dict = pickle.load(file)
+
+        for sign, idx in idx_dict.items():  # for name, age in dictionary.iteritems():  (for Python 2.x)
+            if idx == pred:
+                result = sign
+
+
     return result
 
 
