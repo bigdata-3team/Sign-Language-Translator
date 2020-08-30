@@ -63,7 +63,7 @@
                                                        loop/>
                                             </div>
                                             <h5>{{ list[i].category }} : {{ list[i].word }}</h5>
-											<form action="/dictionary" method="POST" class="form-inline">
+											<form action="/dictionary" method="POST" class="form-inline" target="_blank">
 												<input type="hidden" value="{{ list[i].word }}" name="search">
 												<input type="submit" value="자세히 알아보기">
 											</form>

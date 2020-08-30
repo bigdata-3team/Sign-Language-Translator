@@ -35,7 +35,6 @@
                             <form action="/dictionary" method="POST" autocomplete="off">
                                 <div class="col-lg-2">
                                     <div class="list-group" role="tablist" style="position: absolute;">
-                                        <input type="text" value="" name="search" placeholder="검색어를 입력하세요" style="font-size:10px;">
                                         <input type="submit" value="법률" name="category">
                                         <input type="submit" value="교통" name="category">
                                         <input type="submit" value="의학" name="category">
@@ -59,6 +58,12 @@
                                 <p></p>
                                 <p>동영상을 재생해 보세요</p>
                             </header>
+
+                            <form action="/dictionary" method="POST" autocomplete="off" class="form-inline" style="float:right;">
+                                <input class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요" name="search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색하기</button>
+                            </form>
+
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <colgroup>
