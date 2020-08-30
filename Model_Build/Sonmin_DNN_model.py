@@ -52,7 +52,6 @@ y_train = np.concatenate([y_train, y_train, y_train])
 y_valid_onehot = tf.keras.utils.to_categorical(y_valid, len(unique))
 y_train_onehot = tf.keras.utils.to_categorical(y_train, len(unique))
 
-
 input_shape = (seq_len, ylen, xlen, 3)
 classes = len(unique)
 inputs = tf.keras.Input(shape = input_shape)
@@ -66,8 +65,15 @@ layer_conv2 = tf.keras.layers.TimeDistributed(conv2)(layer_maxpool1)
 normal_conv2 = tf.keras.layers.BatchNormalization()(layer_conv2)
 maxpool2 = tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2, 2))
 layer_maxpool2 = tf.keras.layers.TimeDistributed(maxpool2)(normal_conv2)
+
+conv3 = tf.keras.layers.Conv2D(64, (5, 5), activation="relu")
+layer_conv3 = tf.keras.layers.TimeDistributed(conv3)(layer_maxpool2)
+normal_conv3 = tf.keras.layers.BatchNormalization()(layer_conv3)
+maxpool3 = tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2, 2))
+layer_maxpool3 = tf.keras.layers.TimeDistributed(maxpool3)(normal_conv3)
+
 flatten = tf.keras.layers.Flatten()
-layer_flatten = tf.keras.layers.TimeDistributed(flatten)(layer_maxpool2)
+layer_flatten = tf.keras.layers.TimeDistributed(flatten)(layer_maxpool3)
 batch_normalization = tf.keras.layers.BatchNormalization()(layer_flatten)
 layer_lstm = tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(2 * classes, activation='tanh'))(batch_normalization)
 layer_dropout = tf.keras.layers.Dropout(0.25)(layer_lstm)
@@ -75,9 +81,33 @@ outputs = tf.keras.layers.Dense(classes, activation="softmax")(layer_dropout)
 model = tf.keras.models.Model(inputs = inputs, outputs = outputs)
 
 model.summary()
+
 model.compile(loss = "categorical_crossentropy", optimizer = "rmsprop", metrics = ["accuracy"])
 
-model.fit(X_train, y_train_onehot, batch_size=32, epochs=30, verbose = 1, validation_data = (X_valid, y_valid_onehot))
+history = model.fit(X_train, y_train_onehot, batch_size=32, epochs=30, verbose = 1, validation_data = (X_valid, y_valid_onehot))
+
+model.save("sonmin_model3.h5")
 
 
-# Unable to allocate 54.5 GiB for an array with shape (10449, 29, 67, 120, 3) and data type float64
+import pickle
+
+with open("sonmin_word.p", "wb") as file:
+    pickle.dump(unique_idx_dict, file)
+model.save("sonmin_model2.h5")
+
+
+from sklearn.metrics import confusion_matrix
+predictions = model.predict(X_valid)
+predictions = np.argmax(predictions, axis=1)
+conf_mat = confusion_matrix(y_valid, predictions)
+
+import pickle
+
+with open("confusion_matrix.p", "wb") as file:
+    pickle.dump(conf_mat, file)
+
+
+with open("History2.p", "wb") as file:
+    pickle.dump(history.history["accuracy"], file)
+
+
