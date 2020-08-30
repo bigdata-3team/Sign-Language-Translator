@@ -5,6 +5,7 @@ from flask_dropzone import Dropzone
 from flask_paginate import Pagination, get_page_args
 from konlpy.tag import Okt
 from soynlp.hangle import compose, decompose
+from moviepy.editor import VideoFileClip, concatenate_videoclips
 
 import tensorflow as tf
 import pickle
@@ -13,6 +14,8 @@ import os
 import numpy as np
 import cv2
 import hgtk
+
+
 
 okt = Okt()
 
@@ -68,6 +71,15 @@ class UploadedVideo(db.Model):
     __tablename__ = "uploaded_video"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
+    src = db.Column(db.String, nullable=False)
+    db.create_all()
+
+# merged_video 테이블 클래스
+class MergedVideo(db.Model):
+    __tablename__ = "merged_video"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    query_num = db.Column(db.Integer, nullable=False)
+    input_string = db.Column(db.String, nullable=False)
     src = db.Column(db.String, nullable=False)
     db.create_all()
 
@@ -404,6 +416,7 @@ def handle_upload():
 def handle_form():
     path = 'static/uploads/'
     file_list = os.listdir(path)
+
     src = path + file_list[0]
 
     return render_template('translated.html', result=result, src=src)
@@ -437,8 +450,29 @@ def rtranslation():
                         show_video.append(video_list[[video_list[_][0] for _ in range(len(video_list))].index(
                             hgtk.letter.decompose(word_list[i][j])[l])])
         next_video = ["static/translate_video/" + show_video[_][0] + ".mp4" for _ in range(len(show_video))]
+        next_video_name_tmp = [show_video[_][0] for _ in range(len(show_video))]
+        video_name = ''.join(next_video_name_tmp)
 
-    return render_template('translated2.html', value=value, show_list=show_video, length=len(show_video), next_videos=next_video)
+        video_list = [VideoFileClip(_) for _ in next_video]
+
+        query_num = MergedVideo.query.with_entities(MergedVideo.query_num).all()
+
+        randnum = random.randint(0, 10)
+        f_name = []
+        for k in query_num:
+            f_name.append(k.query_num)
+        while randnum in f_name: # DB에 randnum이 있을 경우
+            randnum = random.randint(0, 10)
+
+        final_video = concatenate_videoclips(video_list)
+        file_name = "static/merged_video/{}.mp4".format(randnum)
+        final_video.write_videofile(file_name)
+        video = MergedVideo(query_num=randnum, input_string=value, src=file_name)
+        db.session.add(video)
+        db.session.commit()
+
+
+    return render_template('translated2.html', value=value, show_list=file_name)
 # ========== 번역 : 문장 입력 ==> 동영상 ==========
 
 # ========== 사전 - 수어 영상 ==========
@@ -526,4 +560,4 @@ def introduce():
 
 # 앱 구동
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

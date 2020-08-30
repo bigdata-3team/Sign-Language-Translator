@@ -88,7 +88,7 @@
 
                                 <form action="/translation_word" method="post"></form>
                                 <form action="/translation_word" method="post">
-                                    <p><textarea type="text" name="test" rows="15">{{value}}</textarea></p>
+                                    <p><textarea type="text" name="test" rows="10">{{ value }}</textarea></p>
                                     <input type="submit" value="정보 넘기기">
                                 </form>
                             </div>
@@ -98,26 +98,14 @@
                     <div class="col align-right">
                         <div class="flex_box">
                             <br>
-                            <div style="text-align: center;"><h5>[ 번역된 언어 ]</h5></div>
+                            <div style="text-align: center;"><h5>[ 번역된 영상 ]</h5></div>
 
                             <figure id="video_player">
                                 <div id="video_container">
-                                    <video controls poster="vid-glacier.jpg">
-
-                                        <source src="../static/translate_video/{{show_list[0][0]}}.mp4"
-                                                type="video/mp4">
-                                        <source src="nambia1.webm" type="video/webm">
+                                    <video controls poster="vid-glacier.jpg" muted autoplay controlslist="nodownload">
+                                        <source src="{{ show_list }}" type="video/mp4">
                                     </video>
                                 </div>
-                                <figcaption>
-
-                                    {% for i in range(0,length) %}
-                                    <a href="../static/translate_video/{{show_list[i][0]}}.mp4"><img
-                                            src="static/images/pic03.jpg" alt="Nambia Timelapse 2"></a>
-                                    {% endfor %}
-
-
-                                </figcaption>
                             </figure>
 
 
