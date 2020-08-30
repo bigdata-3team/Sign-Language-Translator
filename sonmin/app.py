@@ -63,6 +63,14 @@ class DictionaryVideo(db.Model):
     src = db.Column(db.String, nullable=False)
     db.create_all()
 
+# uploaded_video 테이블 클래스
+class UploadedVideo(db.Model):
+    __tablename__ = "uploaded_video"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, nullable=False)
+    src = db.Column(db.String, nullable=False)
+    db.create_all()
+
 
 # 파일 업로드 공간 작동
 app.config.update(
@@ -70,7 +78,7 @@ app.config.update(
     # 저장 위치
     # Flask-Dropzone config:
     DROPZONE_ALLOWED_FILE_TYPE='video',
-    DROPZONE_MAX_FILE_SIZE=3,
+    DROPZONE_MAX_FILE_SIZE=30,
     DROPZONE_MAX_FILES=1,
     DROPZONE_IN_FORM=True,
     DROPZONE_UPLOAD_ON_CLICK=True,
@@ -334,7 +342,7 @@ def prediction_model(file_name):
     model_path = "./static/model/sonmin_model.h5"
     with tf.device("gpu:0"):
         train_model = tf.keras.models.load_model(model_path)
-    img_input = frame_extraction("./uploads/{0}".format(file_name))
+    img_input = frame_extraction("static/uploads/{0}".format(file_name))
 
     pred = train_model.predict(img_input)
     pred = np.argmax(pred)
@@ -364,6 +372,13 @@ def handle_upload():
             file_name = f.filename
             f.save(os.path.join(app.config['UPLOADED_PATH'], file_name))
             result = prediction_model(file_name=file_name)
+
+            name = file_name
+            src = 'static/uploads/{}'.format(file_name)
+
+            video = UploadedVideo(name=name, src=src)
+            db.session.add(video)
+            db.session.commit()
 
     return result
 
@@ -406,7 +421,7 @@ def rtranslation():
                             hgtk.letter.decompose(word_list[i][j])[l])])
         next_video = ["static/translate_video/" + show_video[_][0] + ".mp4" for _ in range(len(show_video))]
 
-    return render_template('translated2.html', show_list=show_video, length=len(show_video), next_videos=next_video)
+    return render_template('translated2.html', value=value, show_list=show_video, length=len(show_video), next_videos=next_video)
 # ========== 번역 : 문장 입력 ==> 동영상 ==========
 
 # ========== 사전 - 수어 영상 ==========

@@ -8,6 +8,7 @@
     {{ dropzone.style('border: 2px dashed #FACC2E; margin: 2%; min-height: 300px;') }}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="../static/assets/css/main.css"/>
+    <link rel="stylesheet" href="../static/assets/css/video.css"/>
 </head>
 <body class="subpage">
 
@@ -25,61 +26,63 @@
 
             <!-- 탭 기능 구현 -->
             <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 's2k')" id="defaultOpen">수어&nbsp;>&nbsp;한국어</button>
-                <button class="tablinks" onclick="openCity(event, 'k2s')">한국어&nbsp;>&nbsp;수어</button>
+                <button class="tablinks" onclick="openCity(event, 's2k')">한국어&nbsp;>&nbsp;수어</button>
+                <button class="tablinks" onclick="openCity(event, 'k2s')" id="defaultOpen">수어&nbsp;>&nbsp;한국어</button>
             </div>
 
             <!-- translation.html에서 업로드 된 파일 & 번역된 문장 출력 -->
             <div id="s2k" class="tabcontent">
-                <div class="left">
-                    <div>
-                        <video width="640" height="320" controls controlsList="nodownload" muted>
-                            <source src="{{ src }}" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
+                <div class="flex flex-2">
 
-                <div class="right">
-                    <div class="col">
-                        {{ result }}
+                    <div class="col align-right">
+                        <form id="accel_form">
+
+                            <div class="flex_box">
+                                <br>
+                                <div style="text-align: center;"><h5>[ 번역할 언어 ]</h5></div>
+
+                                <form action="/translation_word" method="post"></form>
+                                <form action="/translation_word" method="post">
+                                    <p><textarea type="text" name="test" rows="10"></textarea></p>
+                                    <input type="submit" value="정보 넘기기">
+                                </form>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col align-right">
+                        <div class="flex_box">
+                            <br>
+                            <div style="text-align: center;"><h5>[ 번역된 언어 ]</h5></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!--  -->
             <div id="k2s" class="tabcontent">
+
                 <div class="flex flex-2">
-                    <div class="col align-right">
-                        <form id="accel_form">
-                            <div class="flex_box">
-                                <div class="left">
-                                    <div>
-                                        번역할 언어
-                                    </div>
-
-                                    <form action="/translation_word" method="post">
-                                    </form>
-
-                                    <form action="/translation_word" method="post">
-                                        <p><textarea type="text" name="test"></textarea></p>
-                                        <input type="submit" value="정보 넘기기">
-                                    </form>
-
-                                </div>
-                                <div class="right">
-                                    <div>
-                                        번역된 언어
-                                    </div>
-
-
-                                </div>
-                            </div>
+                    <div class="col" style="text-align:center;">
+                        <div>
+                            <br>
+                            <h5>[ 번역할 단어 / 문장 ]</h5>
+                            <video width="450" controls controlsList="nodownload" muted>
+                                <source src="{{ src }}" type="video/mp4">
+                            </video>
+                        </div>
                     </div>
-                    </form>
-                    <!-- 번역으로 넘어가기 -->
+
+                    <div class="col">
+                        <div class="flex_box" style="text-align:center;">
+                            <br>
+                            <h5>[ 번역된 영상 ]</h5>
+                            <br><br>
+                            <h4>{{ result }}</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 </div>

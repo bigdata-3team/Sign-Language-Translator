@@ -8,6 +8,42 @@
     {{ dropzone.style('border: 2px dashed #FACC2E; margin: 2%; min-height: 300px;') }}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="../static/assets/css/main.css"/>
+    <link rel="stylesheet" href="../static/assets/css/video.css"/>
+    <style>
+        #video_player {
+            display: table;
+            line-height: 0;
+            font-size: 0;
+            background: #000;
+        }
+
+        #video_player video,
+        #video_player figcaption {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        #video_player figcaption {
+            width: 20px;
+        }
+
+        #video_player figcaption a {
+            display: block;
+            opacity: .5;
+            transition: 1s opacity;
+        }
+
+        #video_player figcaption a img,
+        figure video {
+            width: 100%;
+            height: auto;
+        }
+
+        #video_player figcaption a:hover {
+            opacity: 1;
+        }
+
+    </style>
 </head>
 <body class="subpage">
 
@@ -23,156 +59,82 @@
                 <h1><a href="/translation">수어 번역</a></h1>
             </header>
             <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 's2k')" id="defaultOpen">수어&nbsp;>&nbsp;한국어</button>
-                <button class="tablinks" onclick="openCity(event, 'k2s')">한국어&nbsp;>&nbsp;수어</button>
+                <button class="tablinks" onclick="openCity(event, 'k2s')" id="defaultOpen">수어&nbsp;>&nbsp;한국어</button>
+                <button class="tablinks" onclick="openCity(event, 's2k')" >한국어&nbsp;>&nbsp;수어</button>
             </div>
 
             <div id="s2k" class="tabcontent">
-                <div class="left">
-                    <div>
-                        <video width="640" height="320" controls controlsList="nodownload" muted>
-                            <source src="" type="video/mp4">
-                        </video>
-                    </div>
+                <!-- Dropzone 생성-->
+                <form action="{{ url_for('handle_form') }}" enctype="multipart/form-data" method="post" style="left">
+                    {{ dropzone.create('/translation') }}
+                    <input type="submit" id="submit" value="번역하기" style="">
+                </form>
+                {{ dropzone.load_js() }}
+                {{ dropzone.config() }}
 
-                </div>
 
-                <div class="right">
-                    <div class="col">
-
-                    </div>
-                </div>
             </div>
 
             <!-- 입력된 문장을 동영으로 출  -->
             <div id="k2s" class="tabcontent">
                 <div class="flex flex-2">
+
                     <div class="col align-right">
                         <form id="accel_form">
+
                             <div class="flex_box">
-                                <div class="left">
-                                    <div>
-                                        번역할 언어
-                                    </div>
+                                <br>
+                                <div style="text-align: center;"><h5>[ 번역할 언어 ]</h5></div>
 
-                                    <form action="/translation_word" method="post">
-                                    </form>
-
-                                    <form action="/translation_word" method="post">
-                                        <p><textarea type="text" name="test"></textarea></p>
-                                        <input type="submit" value="정보 넘기기">
-                                    </form>
-
-
-                                </div>
-                                <div class="right">
-                                    <div>
-                                        번역된 언어
-                                    </div>
-
-<figure id="video_player">
-	<div id="video_container">
-		<video controls poster="vid-glacier.jpg">
-
-            <source src="../static/translate_video/{{show_list[0][0]}}.mp4" type="video/mp4">
-            <source src="nambia1.webm" type="video/webm">
-        </video>
-	</div>
-	<figcaption>
-
-        {% for i in range(0,length) %}
-        <a href="../static/translate_video/{{show_list[i][0]}}.mp4"><img src="static/images/pic03.jpg" alt="Nambia Timelapse 2"></a>
-        {% endfor %}
-
-		</a>
-	</figcaption>
-</figure>
-
-
-
-<style>
-    #video_player {
-        display: table;
-        line-height: 0;
-        font-size: 0;
-        background: #000;
-    }
-
-    #video_player video,
-    #video_player figcaption {
-        display: table-cell;
-        vertical-align: top;
-    }
-
-    #video_player figcaption {
-        width: 20px;
-    }
-
-    #video_player figcaption a {
-        display: block;
-        opacity: .5;
-        transition: 1s opacity;
-    }
-
-    #video_player figcaption a img,
-    figure video {
-        width: 100%;
-        height: auto;
-    }
-
-    #video_player figcaption a:hover {
-        opacity: 1;
-    }
-
-</style>
-
-<script>
-var video_player = document.getElementById("video_player"),
-links = video_player.getElementsByTagName('a');
-for (var i=0; i<links.length; i++) {
-	links[i].onclick = handler;}
-
-function handler(e) {
-	e.preventDefault();
-	videotarget = this.getAttribute("href");
-	filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget;
-	video = document.querySelector("#video_player video");
-	video.removeAttribute("controls");
-	video.removeAttribute("poster");
-	source = document.querySelectorAll("#video_player video source");
-	source[0].src = filename + ".mp4";
-	source[1].src = filename + ".webm";
-	video.load();
-	video.play();}
-
-    video.addEventListener('ended', function () {
-        allLnks[currentVid].classList.remove("currentvid");
-        if ((currentVid + 1) >= lnkNum) {
-            nextVid = 0;
-        } else {
-            nextVid = currentVid + 1;
-        }
-        playVid(nextVid);
-    })
-    video.addEventListener('mouseenter',
-        function () {
-            video.setAttribute("controls", "true");
-        })
-    video.addEventListener('mouseleave', function () {
-        video.removeAttribute("controls");
-    })
-</script>
-
-                                </div>
+                                <form action="/translation_word" method="post"></form>
+                                <form action="/translation_word" method="post">
+                                    <p><textarea type="text" name="test" rows="15">{{value}}</textarea></p>
+                                    <input type="submit" value="정보 넘기기">
+                                </form>
                             </div>
+                        </form>
                     </div>
-                    </form>
-                    <!-- 번역으로 넘어가기 -->
+
+                    <div class="col align-right">
+                        <div class="flex_box">
+                            <br>
+                            <div style="text-align: center;"><h5>[ 번역된 언어 ]</h5></div>
+
+                            <figure id="video_player">
+                                <div id="video_container">
+                                    <video controls poster="vid-glacier.jpg">
+
+                                        <source src="../static/translate_video/{{show_list[0][0]}}.mp4"
+                                                type="video/mp4">
+                                        <source src="nambia1.webm" type="video/webm">
+                                    </video>
+                                </div>
+                                <figcaption>
+
+                                    {% for i in range(0,length) %}
+                                    <a href="../static/translate_video/{{show_list[i][0]}}.mp4"><img
+                                            src="static/images/pic03.jpg" alt="Nambia Timelapse 2"></a>
+                                    {% endfor %}
+
+
+                                </figcaption>
+                            </figure>
+
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
-    </section>
+</div>
+</form>
+<!-- 번역으로 넘어가기 -->
+</div>
+</div>
+
+</div>
+</section>
 </div>
 
 
@@ -194,6 +156,46 @@ function handler(e) {
     }
 
     document.getElementById("defaultOpen").click();
+</script>
+
+
+<script>
+    var video_player = document.getElementById("video_player"),
+        links = video_player.getElementsByTagName('a');
+    for (var i = 0; i < links.length; i++) {
+        links[i].onclick = handler;
+    }
+
+    function handler(e) {
+        e.preventDefault();
+        videotarget = this.getAttribute("href");
+        filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget;
+        video = document.querySelector("#video_player video");
+        video.removeAttribute("controls");
+        video.removeAttribute("poster");
+        source = document.querySelectorAll("#video_player video source");
+        source[0].src = filename + ".mp4";
+        source[1].src = filename + ".webm";
+        video.load();
+        video.play();
+    }
+
+    video.addEventListener('ended', function () {
+        allLnks[currentVid].classList.remove("currentvid");
+        if ((currentVid + 1) >= lnkNum) {
+            nextVid = 0;
+        } else {
+            nextVid = currentVid + 1;
+        }
+        playVid(nextVid);
+    })
+    video.addEventListener('mouseenter',
+        function () {
+            video.setAttribute("controls", "true");
+        })
+    video.addEventListener('mouseleave', function () {
+        video.removeAttribute("controls");
+    })
 </script>
 </body>
 </html>
