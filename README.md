@@ -63,7 +63,7 @@
 > 이 페이지에서는 저희가 [ 프로젝트 주제를 선정하게 된 이유 ]와 [ 프로젝트 관련 영상 ], [ 키워드를 통한 Word Cloud ], 그리고 [ 팀원 정보 ]를 보여드립니다.
 
 ## 3. Introduce Database - sonmin.sqlite
-[ center_map ] TABLE
+[ center_map ] TABLE : 키워드 관련 장소 정보 크롤링 데이터
 ```
 index     : Integer
 Name      : Text
@@ -73,7 +73,7 @@ Latitue   : Text
 Address   : Text
 ```
 
-[ center_notice ] TABLE
+[ center_notice ] TABLE : 농아인협회 공지사항 크롤링 데이터
 ```
 id        : Integer
 title     : Text, not null
@@ -87,6 +87,13 @@ id        : Integer, not null
 category  : String
 word      : String
 mean      : String
+src       : String
+```
+
+[ uploaded_video ] TABLE : 업로드된 비디오 저장
+```
+id        : Integer, not null
+name      : String
 src       : String
 ```
 
