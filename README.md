@@ -65,36 +65,44 @@
 ## 3. Introduce Database - sonmin.sqlite
 [ center_map ] TABLE : 키워드 관련 장소 정보 크롤링 데이터
 ```
-index     : Integer
-Name      : Text
-Category  : Text
-Longitude : Text
-Latitue   : Text
-Address   : Text
+index         : Integer
+Name          : Text
+Category      : Text
+Longitude     : Text
+Latitue       : Text
+Address       : Text
 ```
 
 [ center_notice ] TABLE : 농아인협회 공지사항 크롤링 데이터
 ```
-id        : Integer
-title     : Text, not null
-date      : Text, not null
-url       : Text, not null
+id            : Integer
+title         : Text, not null
+date          : Text, not null
+url           : Text, not null
 ```
 
 [ final_dictionary ] TABLE : "dictionary_video", "restart_meaning" 테이블 JOIN
 ```
-id        : Integer, not null
-category  : String
-word      : String
-mean      : String
-src       : String
+id            : Integer, not null
+category      : String
+word          : String
+mean          : String
+src           : String
 ```
 
 [ uploaded_video ] TABLE : 업로드된 비디오 저장
 ```
-id        : Integer, not null
-name      : String
-src       : String
+id            : Integer, not null
+name          : String
+src           : String
+```
+
+[ merged_video ] TABLE : 입력된 문장을 번역한 영상 관련 정보 저장
+```
+id            : Integer, not null
+query_num     : Integer
+input_string  : String
+src           : String
 ```
 
 ## 4. requirements.txt
