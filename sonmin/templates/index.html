@@ -53,9 +53,8 @@
 								<h2>오늘의 수어</h2>
 								<p>오늘의 수어가 쌓여 당신의 수어가 됩니다.</p>
 							</header>
-                            <div class="gallery">
+                            <div class="gallery" style="text-align:center;">
                                  <div class="flex flex-3">
-
 									 <!-- 무작위로 동영상 3개 보여주기 -->
 									 {% for i in range(3) %}
                                         <div class="col align-center">
@@ -64,12 +63,13 @@
                                                        loop/>
                                             </div>
                                             <h5>{{ list[i].category }} : {{ list[i].word }}</h5>
-											<button href="/translation">자세히 알아보기</button>
                                         </div>
 									 {% endfor %}
 									 <!-- 무작위로 동영상 3개 보여주기 -->
 
+
 								 </div>
+								<button type="button" onclick="location.href='/dictionary'">단어 자세히 알아보기</button>
 							</div>
 						</div>
 					</section>
