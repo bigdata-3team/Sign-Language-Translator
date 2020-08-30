@@ -1,17 +1,17 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy, Pagination
 from flask_admin import Admin
 from flask_dropzone import Dropzone
 from flask_paginate import Pagination, get_page_args
+from konlpy.tag import Okt
+from soynlp.hangle import compose, decompose
+
 import tensorflow as tf
 import pickle
 import random
 import os
 import numpy as np
 import cv2
-
-from konlpy.tag import Okt
-from soynlp.hangle import compose, decompose
 import hgtk
 
 okt = Okt()
@@ -78,7 +78,7 @@ app.config.update(
     DROPZONE_UPLOAD_BTN_ID='submit',
 )
 
-
+# 프레임 추출 코드
 def frame_extraction(file_path):
     max_len = 19;
     xlen = 120;
@@ -115,9 +115,9 @@ def frame_extraction(file_path):
         return img[extra:, ...].reshape(-1, *img.shape)
 
 
-okt = Okt()
 
 
+# 동사원형 추출하는 코드
 class Lemmatizer:
     def __init__(self, stems, predefined=None):
         self._stems = stems
@@ -260,7 +260,7 @@ class Lemmatizer:
 
         return candidates
 
-
+# 동사원형
 stems = {
     '깨닫', '가',  # ㄷ 불규칙
     '구르', '들르',  # 르 불규칙
@@ -277,6 +277,7 @@ stems = {
 
 lemmatizer = Lemmatizer(stems=stems)
 
+# 문장입력 -> 단어 추출 코
 def wordcraw(s):
     s = str(s)
     bfv = []
@@ -328,7 +329,7 @@ def main():
 
     return render_template('index.html', list=video_list)
 
-
+# 모델 예측
 def prediction_model(file_name):
     model_path = "./static/model/sonmin_model.h5"
     with tf.device("gpu:0"):
@@ -348,7 +349,8 @@ def prediction_model(file_name):
     return result
 
 
-# 번역
+
+# ========== 번역 : 동영상 업로드 ==> 한국말 출력 ==========
 @app.route('/translation')
 def translate():
     return render_template('translation.html')
@@ -373,8 +375,9 @@ def handle_form():
     src = path + file_list[0]
 
     return render_template('translated.html', result=result, src=src)
+# ========== 번역 : 동영상 업로드 ==> 한국말 출력 ==========
 
-
+# ========== 번역 : 문장 입력 ==> 동영상 ==========
 @app.route('/translation_word', methods=['GET', 'POST'])
 def rtranslation():
     if request.method == 'POST':
@@ -404,14 +407,12 @@ def rtranslation():
         next_video = ["static/translate_video/" + show_video[_][0] + ".mp4" for _ in range(len(show_video))]
 
     return render_template('translated2.html', show_list=show_video, length=len(show_video), next_videos=next_video)
+# ========== 번역 : 문장 입력 ==> 동영상 ==========
 
-
-# 사전 -수어 영상
+# ========== 사전 - 수어 영상 ==========
 def get_videos(offset=0, per_page=10, videos=[]):
     return videos[offset: offset + per_page]
 
-
-# 사전
 @app.route('/dictionary', methods=['POST', 'GET'])
 def dictionary():
     if request.method == 'POST':
@@ -440,9 +441,9 @@ def dictionary():
                            per_page=per_page,
                            pagination=pagination
                            )
+# ========== 사전 - 수어 영상 ==========
 
-
-# # 센터 정보 -맵
+# 센터 정보 -맵
 @app.route('/map')
 def map():
     # 맵 생성
@@ -462,8 +463,6 @@ def map():
 
 # 센터 정보 -공지사항
 notice = CenterNotice.query.all()
-
-
 def get_notice(offset=0, per_page=10):
     return notice[offset: offset + per_page]
 

@@ -31,7 +31,7 @@
                     <div class="row 200%">
                         <div class="2u 12u$(medium)">
                             <div class="row">
-
+                            <!-- 버튼 누르면 해당 카테고리 보여줄 수 있는 form -->
                             <form action="/dictionary" method="POST">
                                 <div class="col-lg-2">
                                     <div class="list-group" role="tablist" style="position: absolute;">
@@ -48,6 +48,7 @@
                                     </div>
                                 </div>
                             </form>
+                            <!-- 버튼 누르면 해당 카테고리 보여줄 수 있는 form -->
                             </div>
                         </div>
 
@@ -74,6 +75,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <!-- 동영상 Pagination 보여주기 -->
                                     {% for video in videos %}
                                             <tr>
                                                 <td class="firstT">{{ loop.index + (page - 1) * per_page }}</td>
@@ -85,6 +87,7 @@
                                                 <td class="secondT">{{ video.mean }}</td>
                                             </tr>
                                     {% endfor %}
+                                    <!-- 동영상 Pagination 보여주기 -->
                                     </tbody>
                                 </table>
                                 <div class="pagedlist" style="margin-left: 20%;">{{ pagination.links }}</div>

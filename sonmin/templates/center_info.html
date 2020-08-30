@@ -60,7 +60,7 @@
 													<col width="20%"/>
 												</colgroup>
 
-												<!--테이블 머리말 부분-->
+												<!-- 테이블 머리말 부분 -->
 												<thead>
 												<tr>
 													<th scope="번호">번호</th>
@@ -68,8 +68,9 @@
 													<th scope="등록일">등록일</th>
 												</tr>
 												</thead>
+												<!-- 테이블 머리말 부분 -->
 
-												<!--테이블 내용 부분-->
+												<!-- 테이블 내용 부분 -->
 												<tbody>
 													{% for user in users %}
 													<tr>
@@ -79,19 +80,21 @@
 													</tr>
 													{% endfor %}
 												</tbody>
+												<!-- 테이블 내용 부분 -->
 											</table>
 											<div class="pagedlist">{{ pagination.links }}</div>
 									</div>
 
-
+									<!-- 클러스터링 지도 보여주기 -->
 									<div class="4u$ 12u$(medium)">
 										<h3 style="margin-bottom: 10px;">센터 지도</h3>
 										<div>
 											<iframe src="http://127.0.0.1:5000/map" width="350px" height="400px"></iframe>
 										</div>
 									</div>
-								</div>
+									<!-- 클러스터링 지도 보여주기 -->
 
+								</div>
 						</div>
 					</section>
 				</div>

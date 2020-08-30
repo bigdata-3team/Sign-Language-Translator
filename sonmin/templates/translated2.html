@@ -44,6 +44,7 @@
                 </div>
             </div>
 
+            <!-- 입력된 문장을 동영으로 출  -->
             <div id="k2s" class="tabcontent">
                 <div class="flex flex-2">
                     <div class="col align-right">
@@ -70,7 +71,7 @@
                                     </div>
 
                                     {% for i in range(0,length) %}
-                                    {{show_list[i][0]}} </br>
+                                    </br>
 
                                     <script type="text/javascript">
                                         var nextVideo = "../static/translate_video/{{show_list[i][0]}}.mp4";
@@ -80,13 +81,9 @@
                                         }
                                     </script>
 
-                                    <!--                                    <video id="videoPlayer{{i}}" src="../static/translate_video/{{show_list[i][0]}}.mp4"-->
-                                    <!--                                           autoplay controls/>-->
-
                                     <video id="videoarea" controls="controls" poster=""
                                            src="../static/translate_video/{{show_list[i][0]}}.mp4"></video>
 
-                                    {{next_videos}}
                                     {% endfor %}
 
 
