@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy, Pagination
 from flask_admin import Admin
 from flask_dropzone import Dropzone
@@ -348,6 +348,12 @@ def main():
         ran_list.append(ran_num)
 
     return render_template('index.html', list=video_list)
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return redirect(url_for('main'))
+
 
 # 모델 예측
 def prediction_model(file_name):
