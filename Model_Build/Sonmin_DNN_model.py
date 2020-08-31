@@ -33,16 +33,20 @@ for i in range(len(X)):
 
 X = np.concatenate(X, axis = 0); print(X.shape)
 
+# 검증셋 분리
 X_train, y_train, X_valid, y_valid = dp.train_test_split(X, y, category=len(unique))
 ##############
 del X
 del y
 X_train_len = X_train.shape[0]
 
+# data augmentation 작업
+# translate -> rotate -> Gaussian Noise
 X_train_cat1 = da.apply_data_augmentation(X_train, [1, 2, 3])
 X_train = np.concatenate([X_train, X_train_cat1], axis=0)
 del X_train_cat1
 
+# zoom -> rotate -> Gaussian Noise
 X_train_cat2 = da.apply_data_augmentation(X_train[:X_train_len], [5, 2, 3])
 X_train = np.concatenate([X_train, X_train_cat2], axis=0)
 del X_train_cat2
@@ -52,6 +56,7 @@ y_train = np.concatenate([y_train, y_train, y_train])
 y_valid_onehot = tf.keras.utils.to_categorical(y_valid, len(unique))
 y_train_onehot = tf.keras.utils.to_categorical(y_train, len(unique))
 
+# Model build
 input_shape = (seq_len, ylen, xlen, 3)
 classes = len(unique)
 inputs = tf.keras.Input(shape = input_shape)
@@ -89,25 +94,15 @@ history = model.fit(X_train, y_train_onehot, batch_size=32, epochs=30, verbose =
 model.save("sonmin_model3.h5")
 
 
+# 생성된 모델과 단어에 따른 인덱스 딕셔너리 저장
 import pickle
 
 with open("sonmin_word.p", "wb") as file:
     pickle.dump(unique_idx_dict, file)
 model.save("sonmin_model2.h5")
 
-
+# 모델 예측값에 대한 Confusion Matrix
 from sklearn.metrics import confusion_matrix
 predictions = model.predict(X_valid)
 predictions = np.argmax(predictions, axis=1)
 conf_mat = confusion_matrix(y_valid, predictions)
-
-import pickle
-
-with open("confusion_matrix.p", "wb") as file:
-    pickle.dump(conf_mat, file)
-
-
-with open("History2.p", "wb") as file:
-    pickle.dump(history.history["accuracy"], file)
-
-
