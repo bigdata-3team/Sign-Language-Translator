@@ -69,7 +69,7 @@
 
 > 이 페이지에서는 저희가 [ 프로젝트 주제를 선정하게 된 이유 ]와 [ 프로젝트 관련 영상 ], [ 키워드를 통한 Word Cloud ], 그리고 [ 팀원 정보 ]를 보여드립니다.
 
-## 3. Introduce Database - sonmin.sqlite
+## 3. 데이터베이스 설명 - sonmin.sqlite
 [ center_map ] TABLE : 키워드 관련 장소 정보 크롤링 데이터
 ```
 index         : Integer
@@ -111,6 +111,7 @@ query_num     : Integer
 input_string  : String
 src           : String
 ```
+> [ uploaded video ]와 [ merged video ] 테이블은 학습용 테이블입니다. 
 
 ## 4. requirements.txt
 > 저희 프로젝트를 실행하기 위해 필요한 Python package 목록입니다.<br>
